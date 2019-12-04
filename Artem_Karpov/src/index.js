@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const element = React.createElement(
-    "h2",
-    {class:"header2"},
-    "Hello world 2!"
-)
+const messages = [
+    { id:"m0", name: "Vasya", data: "hello!?" },
+    { id: "m1",  name: "Petya", data: "hello!?" },
+    { id: "m2",  name: "Vasya", data: "what are you doing!?" },
+    { id: "m3",  name: "Petya", data: "I'm ReactJSing... ;-)" },
+]
 
-ReactDOM.render(element, document.getElementById('root'));
+const Message = (props) => <h2>{props.name}: {props.data}</h2>
+const MessageList = (props) => props.items.map(item => <Message name={item.name} data={item.data} key={item.id}/>)
+
+ReactDOM.render(<MessageList items={messages}/>, document.getElementById('root'));
