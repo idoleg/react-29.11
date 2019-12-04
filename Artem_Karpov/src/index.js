@@ -11,4 +11,6 @@ const messages = [
 const Message = (props) => <h2>{props.name}: {props.data}</h2>
 const MessageList = (props) => props.items.map(item => <Message name={item.name} data={item.data} key={item.id}/>)
 
-ReactDOM.render(<MessageList items={messages}/>, document.getElementById('root'));
+const targetRoot = document.getElementById('root');
+
+ReactDOM.render(<MessageList items={messages} />, targetRoot);
