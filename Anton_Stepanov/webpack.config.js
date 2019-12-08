@@ -10,14 +10,22 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 options: {
-                    presets: ["@babel/env", "@babel/react"]
+                    presets: ["@babel/env", "@babel/react"],
+                    plugins: ["@babel/plugin-proposal-class-properties"]
                 }
-            }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader',
+            },
         ]
+    },
+    resolve: {
+        extensions: [".js", ".jsx"]
     },
     plugins: [
         new HtmlWebpackPlugin({
