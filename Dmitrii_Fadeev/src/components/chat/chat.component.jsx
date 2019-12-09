@@ -25,16 +25,18 @@ export class Chat extends React.Component {
         this.setState({messages: messages});
     }
 
+    handleChatButtonClick = () => {
+        let messages = this.state.messages;
+        let id = messages[messages.length - 1].id + 1;
+        messages.push({id: id, name: 'Unknown', content: 'Testing...'});
+        this.setState({messages: messages});
+    };
+
     render() {
         return (
             <div className="chat">
                 <MessageList messages={this.state.messages} />
-                <button onClick={() => {
-                    let messages = this.state.messages;
-                    let id = messages[messages.length - 1].id + 1;
-                    messages.push({id: id, name: 'Unknown', content: 'Testing...'});
-                    this.setState({messages: messages});
-                }}> Message! </button>
+                <button onClick={this.handleChatButtonClick}> Message! </button>
             </div>
         )
     }
