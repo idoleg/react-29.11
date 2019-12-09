@@ -15,17 +15,17 @@ export class Messenger extends Component {
         if (this.state.messages.length % 2 === 1) {
             const lastName = this.state.messages[this.state.messages.length - 1].name;
             setTimeout(() =>
-            this.setState(
-                {
-                    messages: [...this.state.messages,
-                        {
-                            id: this.state.messages.length,
-                            name: "Robot",
-                            content:  lastName + ", не приставай ко мне, я робот!?"
-                        }
-                    ]
-                }), 1000
-        )
+                this.setState(
+                    {
+                        messages: [...this.state.messages,
+                            {
+                                id: this.state.messages.length,
+                                name: "Robot",
+                                content:  lastName + ", не приставай ко мне, я робот!?"
+                            }
+                        ]
+                    }), 1000
+            )
             ;
         }
     }
@@ -38,8 +38,8 @@ export class Messenger extends Component {
                     name: newMessage.name,
                     content: newMessage.content
                 }])
-            }
-        })
+            };
+        });
     }
 
     handleNewMassageOld = () => {
@@ -50,8 +50,8 @@ export class Messenger extends Component {
                     name: "Robot",
                     content: "Hello! How are you?"
                 }])
-            }
-        })
+            };
+        });
     }
 
     render() {
@@ -62,6 +62,6 @@ export class Messenger extends Component {
                 <MessageNew onSaveMessage={this.handleNewMassage}/>
 
             </div>
-        )
+        );
     }
 }

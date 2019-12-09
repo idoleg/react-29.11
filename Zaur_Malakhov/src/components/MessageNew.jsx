@@ -19,7 +19,7 @@ export class MessageNew extends Component {
         const newMessage = {
             name: inputName,
             content: inputContent
-        }
+        };
 
         this.props.onSaveMessage(newMessage);
     };
@@ -32,7 +32,7 @@ export class MessageNew extends Component {
                 <button onClick={this.handleButtonClick}>Add message</button>
             </div>
 
-        )
+        );
     }
 
 }

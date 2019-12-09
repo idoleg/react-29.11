@@ -20,7 +20,7 @@ export class MessageField extends Component {
                 <hr/>
             </div>
 
-        )
+        );
     }
 
 }

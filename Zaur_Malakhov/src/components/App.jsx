@@ -15,10 +15,10 @@ export class App extends Component {
     render() {
         const {isHidden, counterValue} = this.state;
         return (
-            //<div>
-            //    {!isHidden && <Counter init={counterValue} onSaveCount={this.handleCounter}/>}
-            //    <button onClick={() => this.setState({isHidden: !isHidden})}>Show</button>
-            //</div>
+        //<div>
+        //    {!isHidden && <Counter init={counterValue} onSaveCount={this.handleCounter}/>}
+        //    <button onClick={() => this.setState({isHidden: !isHidden})}>Show</button>
+        //</div>
 
             <Messenger/>
 
