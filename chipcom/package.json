@@ -1,28 +1,46 @@
 {
-  "name": "Vladimir_Baykin",
+  "name": "notices",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack-dev-server",
+    "start": "webpack --mode development",
+    "server": "webpack-dev-server",
+    "lint": "eslint www/src/**/*.js www/src/**/*.jsx",
+    "fix": "eslint www/src/**/*.js www/src/**/*.jsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "vbaykin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chipcom/notices.git"
+  },
+  "author": "Vladimir Baykin",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/chipcom/notices/issues"
+  },
+  "homepage": "https://github.com/chipcom/notices#readme",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-react": "^7.17.0",
+    "file-loader": "^5.0.2",
+    "html-webpack-plugin": "^3.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
-  },
-  "devDependencies": {
-    "html-webpack-plugin": "^3.2.0",
-    "webpack-cli": "^3.3.10"
   }
 }
