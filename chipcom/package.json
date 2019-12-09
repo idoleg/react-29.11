@@ -6,8 +6,8 @@
   "scripts": {
     "start": "webpack --mode development",
     "server": "webpack-dev-server",
-    "lint": "eslint www/src/**/*.js www/src/**/*.jsx",
-    "fix": "eslint www/src/**/*.js www/src/**/*.jsx --fix",
+    "lint": "eslint chipcom/src/**/*.js chipcom/src/**/*.jsx",
+    "fix": "eslint chipcom/src/**/*.js chipcom/src/**/*.jsx --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
