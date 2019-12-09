@@ -66,7 +66,7 @@ export class Counter extends React.Component {
                 {this.props.init}
                 {/*<button onClick={() => this.handlePlusClick()}>+1</button>*/}
                 {/*<button onClick={this.handlePlusClick.bind(this)}>+1</button>*/}
-                <button data-operation="+1"onClick={this.handleButtonClick}>+1</button>
+                <button data-operation="+1" onClick={this.handleButtonClick}>+1</button>
             </div>
         );
     }
