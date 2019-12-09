@@ -1,9 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class Form extends React.Component {
     state = {
         valueInput: '',
-        valueText: ''
+        valueText: '',
+    };
+
+    static propTypes = {
+        onSaveMessage: PropTypes.func.isRequired,
     };
 
     handleChangeInput = this.handleChangeInput.bind(this);
@@ -19,34 +24,25 @@ export default class Form extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('Отправленное имя: ' + this.state.valueInput);
-        alert('Отправленное сочинение: ' + this.state.valueText);
+        this.props.onSaveMessage( this.state.valueInput, this.state.valueText );
         event.preventDefault();
     }
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Имя:
                     <br/>
                     <input type="text" value={this.state.valueInput} onChange={this.handleChangeInput} />
                     <br/>
-                    Сочинение:
+                    Сообщение:
                     <br/>
                     <textarea value={this.state.valueText} onChange={this.handleChangeText} />
                     <br/>
                 </label>
-                <button onClick={this.props.onClick}>Отправить</button>
+                <input type="submit" value="Отправить" />
             </form>
         );
     }
 }
-            {/* <form onSubmit={this.handleSubmit}> */}
-                {/* <input type="submit" value="Отправить" /> */}
-
-            {/* <input name="user" type="text" placeholder="Имя пользователя" required="required"></input><br/>
-            <textarea name="content" placeholder="Введите текст" required="required"></textarea><br/>
-            <SendButton
-                name="Отправить"
-                onClick={this.handleClick.bind(this)}
-            /> */}
