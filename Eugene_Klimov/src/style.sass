@@ -1,22 +1,41 @@
+$padding-left: 10px
+
 .messenger
   background-color: #ddd
+  padding-bottom: $padding-left / 2
 
 .user-item
-  margin: 5px
+  padding-top: $padding-left / 2
+  padding-left: $padding-left
 
-.user-name
+.user-name, .author-input
   color: blue
   font-weight: bold
 
-.user-content
+.user-content, .message-area
   color: green
 
 .button
   background-color: indianred
   border: none
-  margin: 15px 10px
-  padding: 5px 10px
+  margin: $padding-left
+  padding: $padding-left / 2 $padding-left
   font-weight: bold
+  display: block
+
   &:hover
     background-color: red
     cursor: pointer
+
+.new-message
+  display: inline-block
+  padding: $padding-left
+
+  label
+    margin-top: $padding-left * 1.5
+
+  label, input, textarea
+    display: block
+
+.author-input, .message-area
+  margin-top: $padding-left / 2
