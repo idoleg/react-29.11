@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MessageField from './components/MessageField';
+// import SendButton from './components/SendButton';
+import Form from './components/Form';
 
-function SendButton(props) {
-    return <button  onClick={props.onClick}>{props.name}</button>;
-    }
+// function SendButton(props) {
+//     return <button  onClick={props.onClick}>{props.name}</button>;
+//     }
 
 class Container extends React.Component {
     state = {
@@ -17,8 +19,9 @@ class Container extends React.Component {
     }
 
     handleClick = () => {
-        const count = this.state.messages.length;
-        this.setState ({ messages : [ ...this.state.messages , {id: count + 1, name: "Vladimir", content: "Нормально!"} ] });
+        // const count = this.state.messages.length;
+        // this.setState ({ messages : [ ...this.state.messages , {id: count + 1, name: "Vladimir", content: "Нормально!"} ] });
+        alert('Sending');
     }
     
     componentDidUpdate() {
@@ -38,16 +41,17 @@ class Container extends React.Component {
             <div>
                 <h1>MESSAGE SYSTEM</h1>
                 <MessageField messages={ this.state.messages } />
-                <input name="user" type="text" placeholder="Имя пользователя"></input><br/>
-                <textarea name="content" placeholder="Введите текст" required="required"></textarea><br/>
-                <SendButton
-                    name="Отправить"
-                    onClick={this.handleClick.bind(this)}
-                />
+                <Form onClick={this.handleClick.bind(this)} />
             </div>
         )
     }
 }
+                {/* <input name="user" type="text" placeholder="Имя пользователя" required="required"></input><br/>
+                <textarea name="content" placeholder="Введите текст" required="required"></textarea><br/>
+                <SendButton
+                    name="Отправить"
+                    onClick={this.handleClick.bind(this)}
+                /> */}
 
 ReactDOM.render(
     <Container />,

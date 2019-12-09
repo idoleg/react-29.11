@@ -3,3 +3,11 @@ button {
     width: 70px;
     font-size: 10px;
 }
+
+input {
+    background-color: cornflowerblue;
+}
+
+textarea {
+    background-color: cornflowerblue;
+}
