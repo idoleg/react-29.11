@@ -11,17 +11,8 @@ body {
   border-radius: 6px;
 }
 
-.comment-form input {
+.comment-form input, button, .comment-form textarea {
   display: block;
-  margin: 5px 5px 10px 5px;
-  padding: 10px;
-  width: 200px;
-  border-radius: 6px;
-  color: #333;
-  border: 1px solid #ccc;
-}
-
-.comment-form textarea {
   margin: 5px 5px 10px 5px;
   padding: 10px;
   width: 200px;
