@@ -35,6 +35,7 @@ export class App extends Component {
       ]
   };
   componentDidUpdate() {
+      let last = this.state.messages[this.state.messages.length - 1].name;
       if (this.state.newComment) {
           setTimeout(() => {
               this.setState({
@@ -42,10 +43,7 @@ export class App extends Component {
                       ...this.state.messages,
                       {
                           name: "Robot",
-                          content:
-                "Hello, human, " +
-                this.state.messages[this.state.messages.length - 1].name +
-                "."
+                          content: "Hello, human, " + last + "."
                       }
                   ],
                   newComment: false
