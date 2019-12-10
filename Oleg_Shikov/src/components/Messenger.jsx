@@ -1,36 +1,40 @@
 import React, { Component } from 'react';
-import { Message } from "./Message";
+import { MessageList } from "./MessageList/MessageList";
+import { MessengerForm } from "./MessengerForm";
+
 export class Messenger extends Component {
     state = {
         messages: [
-            { id: 0, name: "Oleg", content: "Привет!" },
-            { id: 1, name: "Ivan", content: "как дела?" },
-            { id: 2, name: "Oleg", content: "Good" },
-            { id: 3, name: "", content: "Good" },
+           /* { name: "Oleg", content: "Привет!" },
+            { name: "Ivan", content: "как дела?" },
+            { name: "Oleg", content: "Good" },
+            { name: "", content: "Good" },*/
         ]
     }
 
-    handleNewMassage = () => {
+    sendNewMessage = (message) => {
 
         this.setState((prevState) => {
             return {
-                messages: prevState.messages.concat([{
-                    id: prevState.messages.length,
-                    name: "Robot",
-                    content: "Hello, how are you?"
-                }])
+                messages: prevState.messages.concat([message])
             }
         })
     }
+    componentDidUpdate() {
+        const name = this.state.messages[this.state.messages.length - 1].name;
+        
+        if(name != "Bot") {
+            setTimeout(() => this.sendNewMessage({name: "Bot", content: "Привет, я робот"}), 1000)
+        }
+    }
 
     render() {
-        const messagesList = this.state.messages.map(item => <Message name={item.name} content={item.content} key={item.id} />);
+        const { messages } = this.state;
+        //const messagesList = this.state.messages.map(item => <Message name={item.name} content={item.content} key={item.id} />);
         return (
             <div>
-                {messagesList}
-                <input></input>
-                <textarea></textarea>
-                <button onClick={this.handleNewMassage}>New message</button>
+                <MessageList messages={messages}></MessageList>
+                <MessengerForm onSendMessage={this.sendNewMessage}></MessengerForm>
             </div>
 
         )
