@@ -5,8 +5,14 @@ module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "app.js"
-    }, 
+        filename: "app.js",
+        chunkFilename: '[name].bundle.js',
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     module: {
         rules: [
             {
@@ -23,6 +29,9 @@ module.exports = {
                 loader: 'style-loader!css-loader',
             },
         ]
+    },
+    devServer: {
+        open: 'firefox'
     },
     resolve: {
         extensions: [".js", ".jsx"]
