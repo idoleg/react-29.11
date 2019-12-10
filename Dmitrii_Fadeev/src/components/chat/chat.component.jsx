@@ -14,22 +14,24 @@ export class Chat extends React.Component {
         }
     }
 
+    insertNewMessage = (name, content) => {
+        let messages = this.state.messages;
+        let id = messages[messages.length - 1].id + 1;
+        messages.push({id: id, name: name, content: content});
+        this.setState({messages: messages});
+    };
+
     componentDidUpdate() {
         let messages = this.state.messages;
         let name = messages[messages.length - 1].name;
         if (name === `Bot`) {
             return
         }
-        let id = messages[messages.length - 1].id + 1;
-        messages.push({id: id, name: `Bot`, content: `Test passed, ${name}`});
-        this.setState({messages: messages});
+        this.insertNewMessage('Bot', `Test passed ${name}`)
     }
 
     handleChatButtonClick = () => {
-        let messages = this.state.messages;
-        let id = messages[messages.length - 1].id + 1;
-        messages.push({id: id, name: 'Unknown', content: 'Testing...'});
-        this.setState({messages: messages});
+        this.insertNewMessage('Unknown', 'Testing');
     };
 
     render() {
