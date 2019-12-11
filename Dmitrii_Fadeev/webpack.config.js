@@ -7,6 +7,12 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js"
     },
+    resolve: {
+      extensions: [
+          ".js",
+          ".jxs"
+      ]
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
@@ -16,11 +22,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 options: {
-                    presets: ["@babel/env", "@babel/react"]
+                    presets: ["@babel/env", "@babel/react"],
+                    plugins: ["@babel/plugin-proposal-class-properties"]
                 }
             }
         ]
