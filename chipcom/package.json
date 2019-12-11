@@ -22,6 +22,7 @@
   "homepage": "https://github.com/chipcom/notices#readme",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "material-ui": "^0.20.2",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
