@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Counter} from "./Counter";
-import {Messenger} from "./Messenger";
+//import {Counter} from "./Counter";
+import {Messenger} from "./Messenger/Messenger";
 
 export class App extends Component {
     state = {
@@ -13,15 +13,8 @@ export class App extends Component {
     }
 
     render() {
-        const {isHidden, counterValue} = this.state;
         return (
-        //<div>
-        //    {!isHidden && <Counter init={counterValue} onSaveCount={this.handleCounter}/>}
-        //    <button onClick={() => this.setState({isHidden: !isHidden})}>Show</button>
-        //</div>
-
             <Messenger/>
-
         );
     }
 }
