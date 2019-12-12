@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MessageField from './components/MessageField';
+// import MessageField from './components/MessageField';
+import Layot from './components/Layout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class Container extends React.Component {
@@ -8,7 +9,8 @@ class Container extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <MessageField />
+        <Layot />
+        {/* <MessageField /> */}
       </MuiThemeProvider>
     )
   }
