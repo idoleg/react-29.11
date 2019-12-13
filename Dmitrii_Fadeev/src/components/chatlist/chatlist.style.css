@@ -1,0 +1,4 @@
+.chatlist {
+    flex-basis: 30%;
+    align-self: flex-start;
+}

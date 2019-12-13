@@ -1,22 +1,25 @@
 import React from 'react';
-import { MessageList } from '../message-list/message-list.component.jsx'
+import { MessageList } from '../message-list/message-list.component';
+import { MessengerForm } from "../messenger-form/messenger-form.component";
+import './chat.style.css'
 
 export class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             messages: [
-                {id: 0, name: 'Dima', content: 'hello, geekbrains!'},
-                {id: 1, name: 'Eduardo', content: 'hola, geekbrains!'},
-                {id: 2, name: 'Ion', content: 'buna, geekbrains!'},
-                {id: 3, name: 'Anton', content: 'привет, geekbrains!'},
+
             ]
-        }
+        };
     }
 
     insertNewMessage = (name, content) => {
         let messages = this.state.messages;
-        let id = messages[messages.length - 1].id + 1;
+        console.log("length: " + messages.length);
+        let id = 0;
+        if (messages.length > 0) {
+            id = messages[messages.length - 1].id + 1;
+        }
         messages.push({id: id, name: name, content: content});
         this.setState({messages: messages});
     };
@@ -24,22 +27,31 @@ export class Chat extends React.Component {
     componentDidUpdate() {
         let messages = this.state.messages;
         let name = messages[messages.length - 1].name;
-        if (name === `Bot`) {
-            return
+        if (name === 'Bot') {
+            return;
         }
-        this.insertNewMessage('Bot', `Test passed ${name}`)
+        setTimeout(() => this.insertNewMessage('Bot', `Test passed ${name}`), 1000);
     }
 
-    handleChatButtonClick = () => {
-        this.insertNewMessage('Unknown', 'Testing');
-    };
+    sendNewMessage = (message) => {
+        this.setState((prevState) => {
+            if (prevState.messages.length === 0) {
+                message.id = 0;
+            } else {
+                message.id = prevState.messages[prevState.messages.length - 1].id + 1;
+            }
+            return {
+                messages: prevState.messages.concat(message)
+            }
+        })
+    }
 
     render() {
         return (
             <div className="chat">
                 <MessageList messages={this.state.messages} />
-                <button onClick={this.handleChatButtonClick}> Message! </button>
+                <MessengerForm onSendMessage={this.sendNewMessage}/>
             </div>
-        )
+        );
     }
 }
