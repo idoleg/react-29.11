@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MessagesBoard } from "./MessagesBoard";
+import { MessagesBoard } from "./MessagesBoard/MessagesBoard";
 import { SendBox } from "./SendBox";
 
 export class MessageField extends Component {
@@ -9,13 +9,13 @@ export class MessageField extends Component {
         ],
     }
 
-    sendMessage = (name, message) => {
+    sendMessage = (message) => {
         this.setState((prevState) => {
             return {
                 messages: prevState.messages.concat([{
                     id: prevState.messages.length,
-                    name: name,
-                    content: message
+                    name: message.name,
+                    content: message.message
                 }]),
             }
         })
@@ -25,7 +25,7 @@ export class MessageField extends Component {
         let lastMessage = this.state.messages[this.state.messages.length-1];
         if (lastMessage.name != 'Robot') {
             setTimeout(() => {
-                this.sendMessage("Robot", "Hello, " + lastMessage.name + ", how are you?", false);
+                this.sendMessage({name: "Robot", message: "Hello, " + lastMessage.name + ", how are you?"});
             }, 1000);
         }
     }
@@ -35,7 +35,7 @@ export class MessageField extends Component {
             <div className="messenger">
                 <MessagesBoard messagesList={this.state.messages} />
                 <SendBox
-                    sendMessage={this.sendMessage}
+                    onSendMessage={this.sendMessage}
                 />
             </div>
         )

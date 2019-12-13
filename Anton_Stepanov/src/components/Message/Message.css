@@ -1,0 +1,12 @@
+.message {
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    width: 30%;
+    
+}
+
+.message-person {
+    background-color: lightgoldenrodyellow;
+}

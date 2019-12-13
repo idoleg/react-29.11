@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{83:function(n,o,s){},85:function(n,o,s){var i=s(83);"string"==typeof i&&(i=[[n.i,i,""]]);var a={insert:"head",singleton:!1};s(35)(i,a);i.locals&&(n.exports=i.locals)}}]);
