@@ -20,11 +20,12 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.s?css$/,
                 use: [
-                    "style-loader",
-                    MiniCssExtractPlugin.loader,
-                    "css-loader"
+                    // "style-loader", // 4
+                    MiniCssExtractPlugin.loader, // 3
+                    "css-loader", // 2
+                    "sass-loader" // 1
                 ]
             }
         ]
@@ -40,5 +41,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "main.css"
         })
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true
+    },
+    devtool: "inline-source-map"
+
 }

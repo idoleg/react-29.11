@@ -1,23 +1,23 @@
 import React, {Component} from "react";
 import {Counter} from "./Counter";
-import {Messenger} from "./Messenger"
+import {Messenger} from "./Messenger/Messenger"
+import {BrowserRouter, Switch, Route } from "react-router-dom"
+
+// www.site.ru/chats/1  www.site.ru/about - BrowserRouter
+// www.site.ru/#chats/1  www.site.ru/#about - HashRouter
 
 export class App extends Component {
-    state = {
-        isHidden: true,
-        counterValue: 0
-    }
-    handleCounter = (count) => {
-        this.setState({counterValue: count});
-    }
+
     render() {
-        const {isHidden, counterValue} = this.state;
         return (
-            //<div>
-            //    {!isHidden && <Counter init={counterValue} onSaveCount={this.handleCounter}/>}
-            //    <button onClick={() => this.setState({isHidden: !isHidden})}>Show!</button>
-            //</div>
-            <Messenger />
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={Messenger}/>
+                    <Route exact path="/counter" component={Counter}/>
+                    <Route exact path="/chats/:id" component={Messenger}/>
+
+                </Switch>
+            </BrowserRouter>
         );
     }
 }
