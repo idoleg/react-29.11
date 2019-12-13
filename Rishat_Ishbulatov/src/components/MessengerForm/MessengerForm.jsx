@@ -37,14 +37,12 @@ export class MessengerForm extends Component {
         return (
             <div className="messengerform">
                 <TextField
-                    id="standard-basic"
                     label="Author"
                     name="author"
                     value={author}
                     onChange={this.handleChange}
                 />
                 <TextField
-                    id="standard-basic"
                     label="Message"
                     name="content"
                     value={content}
