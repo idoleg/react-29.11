@@ -1,0 +1,9 @@
+.layout {
+    max-width: 1370px;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+}
+.layout > * {
+    flex: 1 100%;
+}
