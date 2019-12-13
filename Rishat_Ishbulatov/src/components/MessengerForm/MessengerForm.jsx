@@ -12,7 +12,7 @@ export class MessengerForm extends Component {
     static propTypes = {
         onSendMessage: PropTypes.func.isRequired
     };
-    sendHandle = () => {
+    handleSend = () => {
         this.props.onSendMessage({
             name: this.state.author,
             content: this.state.content
@@ -22,14 +22,14 @@ export class MessengerForm extends Component {
             content: ""
         });
     };
-    changeHandle = event => {
+    handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
         });
     };
-    keyDownHandle = event => {
+    handleKeyDown = event => {
         if (event.keyCode === 13 && event.ctrlKey) {
-            this.sendHandle();
+            this.handleSend();
         }
     };
     render() {
@@ -41,18 +41,18 @@ export class MessengerForm extends Component {
                     label="Author"
                     name="author"
                     value={author}
-                    onChange={this.changeHandle}
+                    onChange={this.handleChange}
                 />
                 <TextField
                     id="standard-basic"
                     label="Message"
                     name="content"
                     value={content}
-                    onChange={this.changeHandle}
-                    onKeyDown={this.keyDownHandle}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
                     autoFocus
                 />
-                <Fab onClick={this.sendHandle} size="small" color="primary">
+                <Fab onClick={this.handleSend} size="small" color="primary">
                     <Send fontSize="small" />
                 </Fab>
             </div>
