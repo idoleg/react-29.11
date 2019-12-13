@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Messenger} from './Messenger';
+import {Layout} from './Layout/Layout';
 
 export class App extends Component {
   render() {
     return (
-      <Messenger/>
+      <Layout/>
     );
   }
 }
