@@ -1,0 +1,12 @@
+.messengerform {
+    display: flex;
+}
+
+.messengerform>* {
+    flex: 1 100%;
+}
+
+.messengerform button {
+    max-width: 40px;
+    margin-top: 5px;
+}
