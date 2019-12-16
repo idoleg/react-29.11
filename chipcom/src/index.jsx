@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import MessageField from './components/MessageField';
-import Layot from './components/Layout';
+import Router from './components/Router';
+import { BrowserRouter } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import './styles/styles.css';
 
 class Container extends React.Component {
 
   render() {
     return (
-      <MuiThemeProvider>
-        <Layot />
-        {/* <MessageField /> */}
-      </MuiThemeProvider>
+      <BrowserRouter>
+        <MuiThemeProvider>
+          <Router />
+        </MuiThemeProvider>
+      </BrowserRouter>
     )
   }
 }
