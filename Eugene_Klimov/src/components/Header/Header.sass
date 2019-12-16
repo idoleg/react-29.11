@@ -1,10 +1,21 @@
+@import ../vars
+
 .header
   background-color: lightblue
-  height: 50px
-  font-size: 20px
-  font-weight: bold
   color: dimgrey
   display: flex
+  flex-direction: column
   align-items: center
   justify-content: center
   border: 1px solid #888
+
+.profile-link
+  font-size: 16px
+  font-weight: bold
+  color: green
+  align-self: flex-start
+  padding-left: $padding-left
+  padding-bottom: $padding-left
+
+  &:hover
+    color: grey

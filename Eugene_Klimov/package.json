@@ -20,6 +20,7 @@
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@material-ui/icons": "^4.5.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
@@ -42,6 +43,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "prop-types": "latest",
-    "@material-ui/core": "latest"
+    "@material-ui/core": "latest",
+    "react-scroll": "latest",
+    "react-router-dom": "latest"
   }
 }

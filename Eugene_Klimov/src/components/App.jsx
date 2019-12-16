@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
-import {Layout} from './Layout/Layout';
+import {Router} from './Router/Router';
+import {BrowserRouter} from 'react-router-dom';
 
 export class App extends Component {
   render() {
     return (
-      <Layout/>
+      <BrowserRouter>
+        <Router/>
+      </BrowserRouter>
     );
   }
 }
