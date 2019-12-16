@@ -16,6 +16,7 @@ export class Message extends Component {
         const msgClass = classNames("message", {
             "message-person": name !== "Robot"
         });
+        // const style = {alignSelf: name === 'Robot' ? 'flex-start' : 'flex-end'}
         return (
             <div className={msgClass}><b>{name}:</b> {content}</div>
         );

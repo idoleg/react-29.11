@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
+import("./SendBox.css");
 
 export class SendBox extends Component {
     state = {
@@ -41,8 +42,8 @@ export class SendBox extends Component {
                     name="name"
                     value={name}
                     className="nameInput"
+                    placeholder="Введите имя"
                     fullWidth={ true }
-                    hintText="Введите имя"
                     onChange={this.handleInputChange}
                     style={ { fontSize: '22px' } }
                     variant="outlined"
@@ -53,7 +54,7 @@ export class SendBox extends Component {
                     className="messageTextarea"
                     fullWidth={ true }
                     multiline
-                    hintText="Введите сообщение"
+                    placeholder="Введите сообщение"
                     style={ { fontSize: '22px' } }
                     rows="4"
                     onChange={this.handleInputChange}

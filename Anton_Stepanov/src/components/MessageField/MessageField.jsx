@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { MessagesBoard } from "./MessagesBoard/MessagesBoard";
-import { SendBox } from "./SendBox";
+import { MessagesBoard } from "../MessagesBoard/MessagesBoard";
+import { SendBox } from "../SendBox/SendBox";
+import("./MessageField.css");
 
 export class MessageField extends Component {
     state = {
