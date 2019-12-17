@@ -6,12 +6,13 @@ module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "bundle.js",
+        publicPath: '/'
     },
     resolve: {
       extensions: [
-          ".js",
-          ".jxs",
+          '.js',
+          '.jxs',
       ]
     },
     plugins: [
@@ -23,11 +24,15 @@ module.exports = {
             filename: "main.css"
         })
     ],
+    devServer: {
+        historyApiFallback: true
+    },
+    devtool: "inline-source-map",
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                exclude: '/node_modules/',
                 loader: "babel-loader",
                 options: {
                     presets: ["@babel/env", "@babel/react"],
