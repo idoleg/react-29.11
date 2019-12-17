@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -11,24 +12,30 @@ export class ChatList extends Component {
     render() {
         return (
             <List component="nav" aria-label="main mailbox folders">
-                <ListItem button>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Chat 1" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Chat 2" />
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Chat 3" />
-                </ListItem>
+                <Link to="/chats/1/">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Chat 1" />
+                    </ListItem>
+                </Link>
+                <Link to="/chats/2/">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Chat 2" />
+                    </ListItem>
+                </Link>
+                <Link to="/chats/3/">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <DraftsIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Chat 3" />
+                    </ListItem>
+                </Link>
             </List>
         );
     }

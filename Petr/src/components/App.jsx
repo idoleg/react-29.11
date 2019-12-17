@@ -1,11 +1,14 @@
-import React, {Component} from "react";
-import {Layout} from "./Layout"
+import React, { Component } from "react";
+import {Router} from './Router';
+import { BrowserRouter } from 'react-router-dom';
 
 export class App extends Component {
 
     render() {
         return (
-            <Layout />            
+            <BrowserRouter>
+                <Router />
+            </BrowserRouter>
         );
     }
 }
