@@ -5,7 +5,7 @@ import { ChatList } from '../ChatList/ChatList';
 import("./Messenger.scss");
 
 export class Messenger extends Component {
-    state = {
+    /* state = {
         chats: {
             1: {
                 name: "It's chat #1", messages: [
@@ -19,12 +19,12 @@ export class Messenger extends Component {
             }
         },
         //messages: [
-        /* { name: "Oleg", content: "Привет!" },
+         { name: "Oleg", content: "Привет!" },
          { name: "Ivan", content: "как дела?" },
          { name: "Oleg", content: "Good" },
-         { name: "", content: "Good" },*/
+         { name: "", content: "Good" },
         //]
-    }
+    }*/
 
     timersOfBot = []
 
@@ -40,25 +40,25 @@ export class Messenger extends Component {
         })
     }
     componentDidUpdate() {
-        const { id } = this.props.match.params;
-        const name = this.state.chats[id].messages[this.state.chats[id].messages.length - 1].name;
+       // const { id } = this.props.match.params;
+        //const name = this.state.chats[id].messages[this.state.chats[id].messages.length - 1].name;
 
-        if (name != "Bot") {
-            this.timersOfBot.push(setTimeout(() => this.sendNewMessage({ name: "Bot", content: `Привет ${name}, я робот в чате ${id}` }), 1000))
-        }
+        //if (name != "Bot") {
+           // this.timersOfBot.push(setTimeout(() => this.sendNewMessage({ name: "Bot", content: `Привет ${name}, я робот в чате ${id}` }), 1000))
+        //}
     }
 
     render() {
 
-        const { chats } = this.state;
-        const { id } = this.props.match.params;
+        const { messages, id } = this.props;
+        
         //const messagesList = this.state.messages.map(item => <Message name={item.name} content={item.content} key={item.id} />);
         return (
             <div className="messenger-container">
                 <ChatList></ChatList>
                 <div className="current-chat">
-                    {chats[id] ? <MessageList messages={chats[id].messages} /> : "Переписка не найдена"}
-                    {chats[id] && <MessengerForm onSendMessage={this.sendNewMessage}></MessengerForm>}
+                    {messages ? <MessageList messages={messages} /> : "Переписка не найдена"}
+                    {messages && <MessengerForm onSendMessage={this.props.onSendMessage}></MessengerForm>}
                 </div>
             </div>
 
