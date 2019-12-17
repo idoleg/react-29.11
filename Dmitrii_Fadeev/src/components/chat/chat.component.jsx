@@ -17,13 +17,16 @@ export class Chat extends React.Component {
         if (name === 'Bot') {
             return;
         }
-        setTimeout(() => this.props.insertNewMessage(parseInt(chat.name),'Bot', `Test passed ${name}`), 1000);
+        setTimeout(() => this.props.insertNewMessage(parseInt(chat.name),'Bot', `Test passed ${name} in chat ${chat.name}`), 2000);
     }
 
     render() {
         const {chat} = this.props;
         return (
-            <div className="chat">
+            <div className='chat'>
+                <div className='chat-header'>
+                    <p>Current Chat: {chat.name}</p>
+                </div>
                 <MessageList messages={chat.messages} />
                 <MessengerForm onSendMessage={this.props.sendNewMessage} chatId={this.props.chatId}/>
             </div>

@@ -34,7 +34,7 @@ export class  MessengerForm extends React.Component {
         return (
             <div className='messenger-form'>
                 <TextField className='input-author' id='standart-basic' label='Name' name="name" value={name} onChange={this.handleInputChange}></TextField>
-                <TextField className='input-message' id='standart-basic' label='Message' name="content" value={content} onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} autoFocus />
+                <TextField className='input-message' id='standart-basic-message' label='Message' name="content" value={content} onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} autoFocus />
                 <Button className='button-new-message' onClick={this.handleNewMessage} variant='contained' color='primary'>
                     New message
                 </Button>

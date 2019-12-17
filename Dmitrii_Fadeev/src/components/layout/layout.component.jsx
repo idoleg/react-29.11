@@ -69,7 +69,7 @@ export class Layout extends React.Component {
         const {chats} = this.state;
 
         let {chatId} = this.props.match.params;
-        if (chatId === undefined) {
+        if (chatId === undefined || chats[chatId] === undefined) {
             chatId = 1;
         }
         return (
