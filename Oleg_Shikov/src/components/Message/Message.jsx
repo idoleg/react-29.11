@@ -10,14 +10,13 @@ export const messageType = {
 
 export class Message extends Component {
     static propTypes = messageType;
-
     render(){
         const {name, content} = this.props;
         const msgClass = classNames("message", {
             "message-person": name !== "Bot"
         });
         return (
-            <div className={msgClass}><b>{name || "Anonim"}:</b> {content}</div>
+        <div className={msgClass}><b>{name || "Anonim"}:</b> {content}</div>
         );
     }
 }
