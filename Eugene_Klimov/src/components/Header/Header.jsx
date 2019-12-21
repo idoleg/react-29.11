@@ -7,15 +7,19 @@ export class Header extends Component {
   static propTypes = {
     chatName: PropTypes.string,
     chatId: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    profiles: PropTypes.object.isRequired,
   };
 
   render() {
-    const {chatId} = this.props;
+    const {chatId, profiles} = this.props;
+    const {title, description} = profiles[chatId];
     return (
       <div className='header'>
         <h2>Наш супер-пупер чатик )</h2>
         <Link className='profile-link' to={'/profile/' + chatId}>
-          {this.props.chatName}
+          {title}: {description}
         </Link>
       </div>
     );

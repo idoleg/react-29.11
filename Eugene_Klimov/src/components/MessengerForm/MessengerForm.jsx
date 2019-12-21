@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {formatDate} from '../utils';
+import {formatDate} from '../../utils/utils';
 import './MessengerForm.sass';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';

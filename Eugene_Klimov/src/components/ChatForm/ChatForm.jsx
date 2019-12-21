@@ -7,6 +7,7 @@ import Input from '@material-ui/core/Input';
 export class ChatForm extends Component {
   static propTypes = {
     onSendChat: PropTypes.func.isRequired,
+    onSendProfile: PropTypes.func.isRequired,
   };
 
   state = {
@@ -22,7 +23,9 @@ export class ChatForm extends Component {
   };
 
   handleNewChat = () => {
-    this.props.onSendChat(this.state.name);
+    const {name} = this.state;
+    this.props.onSendChat(name);
+    this.props.onSendProfile(name, 'Надо бы создать описание...');
     this.contentRef.current.focus();
     this.setState({name: ''});
   };

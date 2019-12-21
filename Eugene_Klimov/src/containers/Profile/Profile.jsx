@@ -1,25 +1,22 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {addProfile} from '../../actions/profileActions';
 
-export class Profile extends Component {
-  state = {
-    profiles: {
-      1: {title: 'Урок №1', description: 'Введение в JavaScript'},
-      2: {title: 'Урок №2', description: 'Погружение в React'},
-    },
-  };
-
+class Profile extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
         id: PropTypes.string,
       }),
     }),
+    profiles: PropTypes.object.isRequired,
   };
 
   render() {
     const {id} = this.props.match.params;
-    const {profiles} = this.state;
+    const {profiles} = this.props;
     if (id === undefined || id > +Object.keys(profiles).length) {
       return (
         <div>
@@ -28,7 +25,7 @@ export class Profile extends Component {
         </div>
       );
     }
-    const {title, description} = this.state.profiles[id];
+    const {title, description} = profiles[id];
     return (
       <div>
         <h2>Профиль чата #{id}</h2>
@@ -38,3 +35,12 @@ export class Profile extends Component {
     );
   }
 }
+
+const mapStateToProps = ({profileReducer}) => ({
+  profiles: profileReducer.profiles,
+});
+
+const mapDispatchProps = (dispatch) =>
+  bindActionCreators({addProfile}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(Profile);

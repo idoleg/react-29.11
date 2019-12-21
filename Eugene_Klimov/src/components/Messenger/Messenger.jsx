@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {MessageList} from '../MessageList/MessageList';
 import {MessengerForm} from '../MessengerForm/MessengerForm';
 import './Messenger.sass';
-import {formatDate} from '../utils';
+import {formatDate} from '../../utils/utils';
 import PropTypes from 'prop-types';
 
 export class Messenger extends Component {
   state = {
     chatId: '1',
+    lenMessages: 0,
   };
 
   static propTypes = {
@@ -29,7 +30,7 @@ export class Messenger extends Component {
   componentDidUpdate() {
     const {chatId, chatName, messages} = this.props;
     const len = messages.length;
-    if (len === 0) {
+    if (len === 0 || len === this.state.lenMessages) {
       return;
     }
 
@@ -39,6 +40,7 @@ export class Messenger extends Component {
     }
     this.setState((prevState) => {
       prevState.chatId = chatId;
+      prevState.lenMessages = len;
     });
 
     const name = messages[len - 1].author;

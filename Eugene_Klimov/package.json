@@ -45,6 +45,9 @@
     "prop-types": "latest",
     "@material-ui/core": "latest",
     "react-scroll": "latest",
-    "react-router-dom": "latest"
+    "react-router-dom": "latest",
+    "redux": "latest",
+    "react-addons-update": "latest",
+    "react-redux": "latest"
   }
 }

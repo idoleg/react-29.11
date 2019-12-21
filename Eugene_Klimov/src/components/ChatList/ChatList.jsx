@@ -7,14 +7,15 @@ import SendIcon from '@material-ui/icons/Send';
 import {Link} from 'react-router-dom';
 import './ChatList.sass';
 import PropTypes from 'prop-types';
-import {ChatForm} from '../ChatForm/ChatForm';
+import {ChatForm} from '../../components/ChatForm/ChatForm';
 import {animateScroll} from 'react-scroll';
 
 export class ChatList extends Component {
   static propTypes = {
-    chats: PropTypes.object,
+    chats: PropTypes.object.isRequired,
     chatId: PropTypes.string,
-    addNewChat: PropTypes.func.isRequired,
+    addChat: PropTypes.func.isRequired,
+    addProfile: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -57,7 +58,9 @@ export class ChatList extends Component {
             {this.renderRows(this.props.chats)}
           </List>
         </div>
-        <ChatForm onSendChat={this.props.addNewChat}/>
+        <ChatForm onSendChat={this.props.addChat}
+                  onSendProfile={this.props.addProfile}
+        />
       </div>
     );
   }
