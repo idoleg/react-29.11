@@ -1,45 +1,35 @@
 import React from 'react';
-import { MessageList } from '../message-list/message-list.component.jsx'
+import { MessageList } from '../message-list/message-list.component';
+import { MessengerForm } from "../messenger-form/messenger-form.component";
+import './chat.style.css'
 
 export class Chat extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            messages: [
-                {id: 0, name: 'Dima', content: 'hello, geekbrains!'},
-                {id: 1, name: 'Eduardo', content: 'hola, geekbrains!'},
-                {id: 2, name: 'Ion', content: 'buna, geekbrains!'},
-                {id: 3, name: 'Anton', content: 'привет, geekbrains!'},
-            ]
-        }
     }
-
-    insertNewMessage = (name, content) => {
-        let messages = this.state.messages;
-        let id = messages[messages.length - 1].id + 1;
-        messages.push({id: id, name: name, content: content});
-        this.setState({messages: messages});
-    };
 
     componentDidUpdate() {
-        let messages = this.state.messages;
-        let name = messages[messages.length - 1].name;
-        if (name === `Bot`) {
-            return
+        const {chat} = this.props;
+        if (chat.messages.length === 0) {
+            return;
         }
-        this.insertNewMessage('Bot', `Test passed ${name}`)
+        let name = chat.messages[chat.messages.length - 1].name;
+        if (name === 'Bot') {
+            return;
+        }
+        setTimeout(() => this.props.insertNewMessage(parseInt(chat.name),'Bot', `Test passed ${name} in chat ${chat.name}`), 2000);
     }
 
-    handleChatButtonClick = () => {
-        this.insertNewMessage('Unknown', 'Testing');
-    };
-
     render() {
+        const {chat} = this.props;
         return (
-            <div className="chat">
-                <MessageList messages={this.state.messages} />
-                <button onClick={this.handleChatButtonClick}> Message! </button>
+            <div className='chat'>
+                <div className='chat-header'>
+                    <p>Current Chat: {chat.name}</p>
+                </div>
+                <MessageList messages={chat.messages} />
+                <MessengerForm onSendMessage={this.props.sendNewMessage} chatId={this.props.chatId}/>
             </div>
-        )
+        );
     }
 }

@@ -1,0 +1,15 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-contents {
+    background-color: beige;
+    font-size: larger;
+    width: 30%;
+    align-self: center;
+}
+
+.profile-contents > p {
+    margin: 20px;
+}

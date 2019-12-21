@@ -1,0 +1,24 @@
+.chat {
+    height: 100%;
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-header {
+    background-color: lightgray;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-header > p {
+    font-size: x-large;
+}
