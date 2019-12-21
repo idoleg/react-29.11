@@ -34,15 +34,6 @@ export class MessengerForm extends Component {
         this.setState({
             content: ""
         });
-        // const inputName = this.inputName.value;
-        // const inputContent = this.inputContent.value;
-        //
-        // const newMessage = {
-        //     name: inputName,
-        //     content: inputContent
-        // };
-        //
-        // this.props.onSaveMessage(newMessage);
     };
 
     handleInputChange = (event) => {
@@ -68,14 +59,9 @@ export class MessengerForm extends Component {
             <div className={"messenger-form"}>
                 <TextField id="Author" label="Author" variant="outlined"
                     name={"author"}  type="text" value={author} onChange={this.handleInputChange}/>
-
-                {/*<input name={"author"}  type="text" value={author} onChange={this.handleInputChange}></input>*/}
-                {/*<textarea name={"content"} value={content} ref={this.textareaRef}></textarea>*/}
-                {/*<textarea name={"content"} value={content} onChange={this.handleInputChange} ref={this.textareaRef} onKeyDown={this.handleKeyDown}></textarea>*/}
                 <TextField id="Content" label="Content" variant="outlined"
                     name={"content"} value={content} onChange={this.handleInputChange}
                     ref={this.textareaRef} onKeyDown={this.handleKeyDown} autoFocus={true}/>
-
                 <Button onClick={this.handleAddMessage} variant="contained" color="primary">Send message</Button>
             </div>
 
