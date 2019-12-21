@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import("./Message.css");
+import("./Message.sass");
 
 export const messageType = {
     name: PropTypes.string.isRequired,
@@ -17,7 +17,7 @@ export class Message extends Component {
         });
         return (
             <div className={msgClass}>
-                <b>{name || "Anonymous"}</b>: {content}
+                <b>{name}</b>: {content}
             </div>
         );
     }

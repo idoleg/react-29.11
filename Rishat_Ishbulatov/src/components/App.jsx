@@ -1,12 +1,21 @@
 import React, { Component } from "react";
-import { Layout } from "./Layout/Layout";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Messenger } from "./Messanger/Messanger";
 
 export class App extends Component {
     render() {
         return (
-            <div>
-                <Layout />
-            </div>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={Messenger} />
+                    <Route exact path="/chats/:id" component={Messenger} />
+                    <Route
+                        exact
+                        path="/profile"
+                        render={() => <div>Profile</div>}
+                    />
+                </Switch>
+            </BrowserRouter>
         );
     }
 }

@@ -1,5 +1,5 @@
 const path = require("path");
-const htmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -20,11 +20,12 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
+                test: /\.s[ac]ss$/i,
                 use: [
                     "style-loader",
                     MiniCssExtractPlugin.loader,
-                    "css-loader"
+                    "css-loader",
+                    "sass-loader"
                 ]
             }
         ]
@@ -33,7 +34,7 @@ module.exports = {
         extensions: [".js", ".jsx"]
     },
     plugins: [
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
             filename: "index.html"
         }),
@@ -41,5 +42,9 @@ module.exports = {
             filename: "main.css"
 
         })
-    ]
+    ],
+    devServer: {
+        historyApiFallback: true
+    },
+    devtool: "inline-source-map"
 };
