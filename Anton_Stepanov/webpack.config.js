@@ -37,9 +37,7 @@ module.exports = {
     },
     devServer: {
         open: 'firefox',
-        historyApiFallback: {
-            index: 'index.html'
-        },
+        historyApiFallback: true,
     },
     resolve: {
         extensions: [".js", ".jsx"]

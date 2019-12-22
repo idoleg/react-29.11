@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import List from "@material-ui/core/List"
 import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
@@ -10,7 +11,10 @@ function ListItemLink(props) {
 }
 
 export class ChatList extends Component {
-
+    static propTypes = {
+        chatId: PropTypes.number.isRequired,
+        chats: PropTypes.object.isRequired,
+    };
 
     render() {
         const chats = this.props.chats;

@@ -17,7 +17,7 @@ export class ChatForm extends Component {
     }
 
     handleClick = (event) => {
-        this.props.onCreateChat({ name: this.state.chatname, messages: []});
+        this.props.onCreateChat(this.state.chatname);
         this.setState({
             chatname: ''
         })

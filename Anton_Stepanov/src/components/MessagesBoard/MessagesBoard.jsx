@@ -13,8 +13,8 @@ export class MessagesBoard extends Component {
     render() {
         return (
             <div className="message-list">
-                {this.props.messagesList.map((item, index) =>
-                    <Message {...item} key={index} />)}
+                {this.props.chat.messages.map((index) =>
+                    <Message {...this.props.messagesList[index]} key={index} />)}
             </div>
         )
     }

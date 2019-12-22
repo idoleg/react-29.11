@@ -6,7 +6,7 @@ import("./SendBox.css");
 export class SendBox extends Component {
     state = {
         name: "",
-        message: ""
+        content: ""
     }
 
     handleInputChange = (event) => {
@@ -19,7 +19,7 @@ export class SendBox extends Component {
 
     handleKeyUp = (event) => {
         if (event.keyCode === 13 && event.ctrlKey) { //Enter code
-            this.props.onSendMessage({ name: this.state.name, message: this.state.message });
+            this.props.onSendMessage({ name: this.state.name, content: this.state.message });
             this.setState({
                 message: ''
             })
@@ -27,7 +27,7 @@ export class SendBox extends Component {
     };
 
     handleClick = (event) => {
-        this.props.onSendMessage({ name: this.state.name, message: this.state.message });
+        this.props.onSendMessage({ name: this.state.name, content: this.state.message });
         this.setState({
             message: ''
         })

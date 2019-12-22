@@ -7,79 +7,33 @@ import {MessageField} from "../MessageField/MessageField"
 import("./Layout.css");
 
 export class Layout extends Component {
-    static propTypes = {
-        chatId: PropTypes.number,
-    };
- 
-    static defaultProps = {
-        chatId: 1,
-    };
-
-    chatId = this.props.chatId;
-
-    state = {
-        chats: {
-            1: {
-                name: "First chat",
-                messages: [
-                    { name: "Robot", content: "Привет путник, приветствую тебя в нашем чате!" },
-                ],
-            },
-            2: {
-                name: "Second chat",
-                messages: [
-                    { name: "Robot", content: "Привет путник, приветствую тебя в нашем чате!" },
-                ],
-            },
-        }
-    }
-
-    size = function(obj) {
-        var size = 0, key;
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) size++;
-        }
-        return size;
-    };
 
     sendMessage = (message) => {
-        this.setState((prevState) => {
-            const chats = prevState.chats;
-            chats[this.chatId].messages = chats[this.chatId].messages.concat([{
-                id: chats[this.chatId].messages.length,
-                name: message.name,
-                content: message.message
-            }]);
-            return { chats }
-        })
-    }
+        this.props.onSendMessage(message);
+    };
 
-    createChat = (chat) => {
-        this.setState((prevState) => {
-            const chats = prevState.chats;
-            chats[this.size(chats)+1] = chat;
-            return { chats }
-        })
+    createChat = (name) => {
+        this.props.onCreateChat(name);
     }
 
     render() {
-        const { chats } = this.state;
-        if (this.props.match.params.chatId !== undefined) {
-            this.chatId = this.props.match.params.chatId;
-        }
-        const { messages } = chats[this.chatId];
         return (
             <div className="layout">
                 <div className="header">
-                    <Header chatId={ this.chatId } />
+                    <Header chatId={ this.props.chatId } />
                 </div>
                 <div className="messenger-content">
                     <div className="chat-list">
-                        <ChatList chats={chats}/>
-                        <ChatForm onCreateChat={this.createChat} />
+                        <ChatList chatId={ this.chatId } chats={ this.props.chats } />
+                        <ChatForm onCreateChat={ this.createChat } />
                     </div>
                     <div className="messages-list">
-                        <MessageField onSendMessage={this.sendMessage} messages={messages} />
+                        <MessageField
+                            chatId={ this.props.chatId }
+                            chats={ this.props.chats }
+                            messages={ this.props.messages } 
+                            onSendMessage={ this.sendMessage }
+                        />
                     </div>
                 </div>
             </div>
