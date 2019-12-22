@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {formatDate} from '../../utils/utils';
 import './MessengerForm.sass';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
@@ -13,6 +14,7 @@ export class MessengerForm extends Component {
   state = {
     author: '',
     content: '',
+    date: '',
   };
 
   contentRef = React.createRef();
@@ -25,8 +27,9 @@ export class MessengerForm extends Component {
 
   handleNewMessage = () => {
     this.props.onSendMessage({
-      name: this.state.author,
+      author: this.state.author,
       content: this.state.content,
+      date: formatDate(),
     });
     this.contentRef.current.focus();
     this.setState({content: ''});
