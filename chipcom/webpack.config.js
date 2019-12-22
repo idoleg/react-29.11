@@ -28,8 +28,14 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.css$/,
-				loader: 'style-loader!css-loader',
+				test: /\.s?css$/,
+				use: [
+					"style-loader",
+					// MiniCssExtractPlugin.loader,
+					"css-loader",
+					"sass-loader"
+				]
+				// loader: 'style-loader!css-loader',
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
@@ -48,5 +54,9 @@ module.exports = {
             template: path.resolve(__dirname, "src", "index.html"),
             filename: "index.html"
         })
-    ]
+    ],
+	devServer: {
+		historyApiFallback: true
+	},
+	devtool: 'cheap-inline-module-source-map',
 };
