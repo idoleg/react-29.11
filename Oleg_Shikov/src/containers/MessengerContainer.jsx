@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Messenger} from "../components/Messenger/Messenger"
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { loadMessages, sendMessage } from "../actions/messageActions"
+import { loadMessages, sendMessage, addChat } from "../actions/messageActions"
 
 class MessengerContainer extends Component {
 
@@ -15,21 +15,21 @@ class MessengerContainer extends Component {
     }
 
     render() {
-        return <Messenger messages={this.props.messages} onSendMessage={this.handleSendMessage} />
+        return <Messenger messages={this.props.messages} onSendMessage={this.handleSendMessage} chats={this.props.chats} addChat={this.props.addChat}/>
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const {id} = ownProps.match.params;
+const mapStateToProps = (state, props) => {
+    const {id} = props.match.params;
 
     return {
         chats: state.messages.chats,
         messages:  state.messages.chats[id] &&  state.messages.chats[id].messages,
-        chatId: id
+        chatId: id,
     }
 }
 
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({loadMessages, sendMessage}, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({loadMessages, sendMessage, addChat}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessengerContainer);

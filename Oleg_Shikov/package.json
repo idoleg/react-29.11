@@ -28,6 +28,7 @@
     "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
@@ -35,6 +36,8 @@
   "dependencies": {
     "@material-ui/core": "^4.7.2",
     "classnames": "^2.2.6",
+    "connected-react-router": "^6.6.1",
+    "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-addons-update": "^15.6.2",

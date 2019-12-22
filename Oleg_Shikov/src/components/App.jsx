@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Counter } from "./Counter";
-import  MessengerContainer  from "../containers/MessengerContainer"
+import MessengerContainer from "../containers/MessengerContainer"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import {initStore} from "../initStore";
-import {Provider} from "react-redux";
+import { initStore, history } from "../initStore";
+import { Provider } from "react-redux";
+import {ConnectedRouter} from "connected-react-router";
 // www.site.ru/chats/1  www.site.ru/about - BrowserRouter
 // www.site.ru/#chats/1  www.site.ru/#about - HashRouter
 
@@ -15,14 +16,14 @@ export class App extends Component {
         return (
 
             <Provider store={store}>
-                <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={MessengerContainer} />
-                    <Route exact path="/counter" component={Counter} />
-                    <Route exact path="/chats/:id" component={MessengerContainer} />
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route exact path="/" component={MessengerContainer} />
+                        <Route exact path="/counter" component={Counter} />
+                        <Route exact path="/chats/:id" component={MessengerContainer} />
 
-                </Switch>
-            </BrowserRouter>
+                    </Switch>
+                </ConnectedRouter>
             </Provider>
 
         );

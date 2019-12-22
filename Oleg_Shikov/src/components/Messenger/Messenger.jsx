@@ -50,12 +50,12 @@ export class Messenger extends Component {
 
     render() {
 
-        const { messages, id } = this.props;
+        const { messages, id, chats } = this.props;
         
         //const messagesList = this.state.messages.map(item => <Message name={item.name} content={item.content} key={item.id} />);
         return (
             <div className="messenger-container">
-                <ChatList></ChatList>
+                <ChatList chats={chats} addChat={this.props.addChat}></ChatList>
                 <div className="current-chat">
                     {messages ? <MessageList messages={messages} /> : "Переписка не найдена"}
                     {messages && <MessengerForm onSendMessage={this.props.onSendMessage}></MessengerForm>}
