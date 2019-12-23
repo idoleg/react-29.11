@@ -1,6 +1,7 @@
 import {handleActions} from 'redux-actions';
 import {loadMessages, addMessage} from '../actions/messageActions';
 import update from 'react-addons-update';
+import {addChat} from "../actions/chatActions";
 
 const defaultState = {
     chats: {}
@@ -29,6 +30,17 @@ export default handleActions({
         return update(state, {
             chats: {
                     [chatId]: {messages: {$push: [message]}}
+            }
+        });
+    },
+    [addChat]: (state, {payload}) => {
+        const chatIdInt = Object.keys(state.chats).length + 1;
+        const chatId = chatIdInt.toString();
+        return update(state, {
+            chats: {
+                $merge:{
+                    [chatId]: {name: chatId, messages: []}
+                }
             }
         });
     }
