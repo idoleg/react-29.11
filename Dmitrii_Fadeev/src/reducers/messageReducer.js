@@ -24,5 +24,8 @@ export default handleActions({
             }
             }
         }
+    },
+    [addMessage]: (state, {payload}) => {
+        return {}
     }
 }, defaultState);

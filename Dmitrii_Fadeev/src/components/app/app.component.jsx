@@ -1,7 +1,7 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import React from 'react';
 import {Profile} from '../profile/profile.component';
-import {initStore} from "../../initStore";
+import {initStore} from '../../initStore';
 import {Provider} from 'react-redux';
 import LayoutContainer from "../../containers/layout/layout.container";
 

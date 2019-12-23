@@ -6,7 +6,7 @@ import {bindActionCreators} from "redux";
 class LayoutContainer extends React.Component {
 
     componentDidMount() {
-        console.log(this.props.loadMessages);
+        console.log(this.props);
         this.props.loadMessages();
     }
 
