@@ -13,7 +13,7 @@ export class  MessengerForm extends React.Component {
         };
     }
     handleNewMessage = () => {
-        this.props.onSendMessage(this.props.chatId, {name: this.state.name, content: this.state.content});
+        this.props.onSendMessage({name: this.state.name, content: this.state.content});
         this.setState({name: "", content: ""});
     };
 
@@ -27,13 +27,13 @@ export class  MessengerForm extends React.Component {
         if (e.keyCode === 13 && e.ctrlKey) {
             this.handleNewMessage();
         }
-    }
+    };
 
     render () {
         const {name, content} = this.state;
         return (
             <div className='messenger-form'>
-                <TextField className='input-author' id='standart-basic' label='Name' name="name" value={name} onChange={this.handleInputChange}></TextField>
+                <TextField className='input-author' id='standart-basic' label='Namle' name="name" value={name} onChange={this.handleInputChange}></TextField>
                 <TextField className='input-message' id='standart-basic-message' label='Message' name="content" value={content} onChange={this.handleInputChange} onKeyDown={this.handleKeyDown} autoFocus />
                 <Button className='button-new-message' onClick={this.handleNewMessage} variant='contained' color='primary'>
                     New message

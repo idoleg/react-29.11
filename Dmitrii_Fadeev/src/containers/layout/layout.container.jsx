@@ -1,32 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {loadMessages} from '../../actions/messageActions';
+import {loadMessages, addMessage} from '../../actions/messageActions';
 import {bindActionCreators} from "redux";
+import {Layout} from "../../components/layout/layout.component";
 
 class LayoutContainer extends React.Component {
 
     componentDidMount() {
-        console.log(this.props);
         this.props.loadMessages();
     }
 
+    handleSendMessage = (message) => {
+        this.props.addMessage(this.props.chatId, message)
+    };
+
     render() {
-        console.log(this.props.chats);
-        return null;
+        return <Layout chats={this.props.chats} onSendMessage={this.handleSendMessage}/>
     }
-        //return <Layout />
 };
 
 const mapStateToProps = (state, ownProps) => {
+    const {chatId} = ownProps.match.params;
     return {
-        chats: state.messages.chats
+        chats: state.messages.chats,
+        chatId: chatId
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        loadMessages: () => bindActionCreators({loadMessages}, dispatch)
-    }
-};
+const mapDispatchToProps = (dispatch) =>
+        bindActionCreators({loadMessages, addMessage}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LayoutContainer);
