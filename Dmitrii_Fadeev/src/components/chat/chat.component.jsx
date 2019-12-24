@@ -17,7 +17,7 @@ export class Chat extends React.Component {
         if (name === 'Bot') {
             return;
         }
-        setTimeout(() => this.props.insertNewMessage(parseInt(chat.name),'Bot', `Test passed ${name} in chat ${chat.name}`), 2000);
+        setTimeout(() => this.props.sendNewMessage({name: 'Bot', content: `Test passed ${name} in chat ${chat.name}`}), 2000);
     }
 
     render() {

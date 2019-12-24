@@ -13,7 +13,7 @@ export class  MessengerForm extends React.Component {
         };
     }
     handleNewMessage = () => {
-        this.props.onSendMessage(this.props.chatId, {name: this.state.name, content: this.state.content});
+        this.props.onSendMessage({name: this.state.name, content: this.state.content});
         this.setState({name: "", content: ""});
     };
 
@@ -27,7 +27,7 @@ export class  MessengerForm extends React.Component {
         if (e.keyCode === 13 && e.ctrlKey) {
             this.handleNewMessage();
         }
-    }
+    };
 
     render () {
         const {name, content} = this.state;
