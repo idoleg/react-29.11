@@ -1,12 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, "src", "index.js"),
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "app.js"
-    }, 
+        filename: "app.js",
+        chunkFilename: '[name].bundle.js',
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     module: {
         rules: [
             {
@@ -20,9 +27,17 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader',
+                use: [
+                    "style-loader",
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
+                ]
             },
         ]
+    },
+    devServer: {
+        open: 'firefox',
+        historyApiFallback: true,
     },
     resolve: {
         extensions: [".js", ".jsx"]
@@ -31,6 +46,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src", "index.html"),
             filename: "index.html"
+        }),
+        new MiniCssExtractPlugin({
+            filename: "main.css"
         })
     ]
 }
