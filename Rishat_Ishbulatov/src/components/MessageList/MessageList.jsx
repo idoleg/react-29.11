@@ -14,9 +14,10 @@ export class MessageList extends Component {
         return (
             <div className="message-container">
                 <div className="message-list">
-                    {this.props.messages.map((item, index) => (
-                        <Message {...item} key={index} />
-                    ))}
+                    {this.props.messages &&
+                        this.props.messages.map((item, index) => (
+                            <Message {...item} key={index} />
+                        ))}
                 </div>
                 <MessageForm
                     chatID={this.props.chatID}
