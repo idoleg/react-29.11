@@ -1,13 +1,15 @@
-export const LOAD_MESSAGES = '@@message/LOAD_MESSAGES';
 export const SEND_MESSAGE = '@@message/SEND_MESSAGE';
-
-export const loadMessages = () => ({
-  type: LOAD_MESSAGES,
-});
+export const DELETE_MESSAGE = '@@message/DELETE_MESSAGE';
 
 export const sendMessage = (chatId, messageId, message) => ({
   type: SEND_MESSAGE,
   chatId,
   messageId,
   message,
+});
+
+export const deleteMessage = (chatId, messageId) => ({
+  type: DELETE_MESSAGE,
+  chatId,
+  messageId,
 });

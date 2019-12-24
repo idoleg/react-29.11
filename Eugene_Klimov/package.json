@@ -48,6 +48,9 @@
     "react-router-dom": "latest",
     "redux": "latest",
     "react-addons-update": "latest",
-    "react-redux": "latest"
+    "react-redux": "latest",
+    "connected-react-router": "latest",
+    "history": "latest",
+    "redux-persist": "latest"
   }
 }
