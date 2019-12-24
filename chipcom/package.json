@@ -1,5 +1,5 @@
 {
-  "name": "chat",
+  "name": "geekmessenger",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -23,8 +23,10 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@material-ui/core": "^4.7.2",
+    "connected-react-router": "^6.6.1",
     "date-format": "^3.0.0",
     "dateformat": "^3.0.3",
+    "history": "^4.10.1",
     "material-ui": "^0.20.2",
     "prop-types": "^15.7.2",
     "react-addons-update": "^15.6.2",
@@ -49,6 +51,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scroll": "^1.7.14",
+    "redux-persist": "^6.0.0",
     "sass-loader": "^8.0.0",
     "sass-node": "^4.11.2",
     "style-loader": "^1.0.1",

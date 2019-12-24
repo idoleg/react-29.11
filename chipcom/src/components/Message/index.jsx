@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
+const dateFormat = require('dateformat');
+
 class Message extends React.Component {
     static propTypes = {
         text: PropTypes.string.isRequired,
@@ -9,8 +11,6 @@ class Message extends React.Component {
     };
     
     render() {
-        const dateFormat = require('dateformat');
-        
         dateFormat.i18n = {
             dayNames: [
                 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',

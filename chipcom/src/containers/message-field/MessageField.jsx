@@ -7,6 +7,7 @@ import { TextField } from 'material-ui';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../../components/Message';
+import { sendMessage } from '../../actions/messageActions';
 import './message-field.css';
 
 class MessageField extends React.Component {
@@ -67,13 +68,13 @@ class MessageField extends React.Component {
         sender = { messages[messageId].sender }
         created = { messages[messageId].created }
       /> ));
-
-    return <div>
+ 
+  return <div>
       <div id='message-field' key='messageElements' className='message-field'>
         { messageElements }
       </div>
       <div key="textInput" style={ { width: '100%', display: 'flex' } }>
-        <TextField
+        <TextField className='text-field'
           name="input"
           fullWidth={ true }
           hintText="Введите сообщение"

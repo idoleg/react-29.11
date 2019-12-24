@@ -13,12 +13,12 @@ class Header extends React.Component {
   static defaultProps = {
     chatId: 1,
   };
-
+ 
   render() {
     return (
       <div className="header">
         <div className="header-left-side">
-          <span style={ { fontSize: '20px' } } className='header-left-side'>{ this.props.chatTitle }</span>
+          <span className='header-left-side'>{ this.props.chatTitle }</span>
         </div>
         <div className="header-right-side">
           <Button variant="contained" className='header-right-side' onClick={ this.props.onProfileClick }>Профиль</Button>
