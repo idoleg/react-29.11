@@ -1,4 +1,5 @@
 import update from 'react-addons-update';
+import {getNullCountObject} from '../utils/utils';
 import {ADD_CHAT, DELETE_CHAT} from '../actions/chatActions';
 import {SEND_MESSAGE, DELETE_MESSAGE} from '../actions/messageActions';
 
@@ -29,6 +30,9 @@ export default function chatReducer(store = initialStore, action) {
     }
     case ADD_CHAT: {
       for (const chat of Object.entries(store.chats)) {
+        if (chat[1] === null) {
+          continue;
+        }
         if (chat[1].title === action.title || action.title === '') {
           alert('Недопустимое имя чата!');
           return store;
@@ -62,18 +66,16 @@ export default function chatReducer(store = initialStore, action) {
       });
     }
     case DELETE_CHAT: {
-      if (Object.keys(store.chats).length === 1) {
+      if (Object.keys(store.chats).length - 1 ===
+        getNullCountObject(store.chats)) {
         alert('Нельзя удалить последний чат!');
         return store;
       }
-      const {chatId} = action;
-      // store.chats[chatId].messageList.forEach((messageId) =>
-      //   deleteMessage(chatId, messageId),
-      // );
-      delete store.chats[chatId];
       return update(store, {
         chats: {
-          $merge: {},
+          $merge: {
+            [action.chatId]: null,
+          },
         },
       });
     }

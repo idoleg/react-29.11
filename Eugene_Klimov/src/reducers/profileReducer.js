@@ -1,6 +1,7 @@
 import update from 'react-addons-update';
 import {ADD_PROFILE} from '../actions/profileActions';
 import {DELETE_CHAT} from '../actions/chatActions';
+import {getNullCountObject} from '../utils/utils';
 
 const initialStore = {
   profiles: {
@@ -26,13 +27,15 @@ export default function profileReducer(store = initialStore, action) {
       });
     }
     case DELETE_CHAT: {
-      if (Object.keys(store.profiles).length === 1) {
+      if (Object.keys(store.profiles).length - 1 ===
+        getNullCountObject(store.profiles)) {
         return store;
       }
-      delete store.profiles[action.chatId];
       return update(store, {
         profiles: {
-          $merge: {},
+          $merge: {
+            [action.chatId]: null,
+          },
         },
       });
     }

@@ -37,10 +37,14 @@ class Layout extends Component {
 
     // eslint-disable-next-line react/prop-types
     let {id} = this.props.match.params;
-    if (chats[id] === undefined) {
-      id = Object.keys(chats).shift();
+    if (chats[id] === null || chats[id] === undefined) {
+      for (const [i] of Object.entries(chats)) {
+        if (chats[i] !== null) {
+          id = i;
+          break;
+        }
+      }
     }
-
     return (
       <div className='layout'>
         <Header chatId={id} profiles={profiles}/>

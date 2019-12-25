@@ -32,6 +32,9 @@ export class ChatList extends Component {
     const {chatId} = this.props;
     const items = [];
     for (const [id, chat] of Object.entries(chats)) {
+      if (chat === null) {
+        continue;
+      }
       items.push(
         <ChatLink
           chatId={chatId}
