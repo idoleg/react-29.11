@@ -2,13 +2,13 @@
     "name": "Rishat_Ishbulatov",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "index.jsx",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack --mode=production",
         "dev": "webpack-dev-server --mode=development",
-        "lint": "eslint src/**/*.jsx",
-        "fix": "eslint src/**/*.jsx --fix"
+        "lint": "eslint src/**/*.js src/**/*.jsx",
+        "fix": "eslint src/**/*.js src/**/*.jsx --fix"
     },
     "keywords": [],
     "author": "",
@@ -37,9 +37,17 @@
         "@material-ui/core": "^4.7.2",
         "@material-ui/icons": "^4.5.1",
         "classnames": "^2.2.6",
+        "connected-react-router": "^6.6.1",
+        "history": "^4.10.1",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
+        "react-addons-update": "^15.6.2",
         "react-dom": "^16.12.0",
-        "react-router-dom": "^5.1.2"
+        "react-redux": "^7.1.3",
+        "react-router-dom": "^5.1.2",
+        "redux": "^4.0.4",
+        "redux-actions": "^2.6.5",
+        "redux-logger": "^3.0.6",
+        "redux-persist": "^6.0.0"
     }
 }

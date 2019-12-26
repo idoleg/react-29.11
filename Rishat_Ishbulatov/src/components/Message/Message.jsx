@@ -5,15 +5,17 @@ import("./Message.sass");
 
 export const messageType = {
     name: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
+    isNew: PropTypes.bool.isRequired
 };
 
 export class Message extends Component {
     static propTypes = messageType;
     render() {
-        const { name, content } = this.props;
+        const { name, content, isNew } = this.props;
         const msgClass = classNames("message", {
-            "message-person": name !== "Robot"
+            "message-person": name !== "Robot",
+            "message-new": isNew
         });
         return (
             <div className={msgClass}>
