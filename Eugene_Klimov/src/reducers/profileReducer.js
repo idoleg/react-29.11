@@ -1,27 +1,22 @@
 import update from 'react-addons-update';
-import {LOAD_PROFILES, ADD_PROFILE} from '../actions/profileActions';
+import {
+  ADD_PROFILE,
+  START_PROFILES_LOADING,
+  SUCCESS_PROFILES_LOADING,
+  ERROR_PROFILES_LOADING,
+} from '../actions/profileActions';
+import {DELETE_CHAT} from '../actions/chatActions';
+import {getNullCountObject} from '../utils/utils';
 
 const initialStore = {
-  profiles: {
-    // 1: {title: 'Урок №1', description: 'Введение в JavaScript'},
-    // 2: {title: 'Урок №2', description: 'Погружение в React'},
-    // 3: {title: 'Урок №3', description: 'Изучаем Redux'},
-  },
+  profiles: {},
+  isLoadingProfiles: false,
 };
 
 export default function profileReducer(store = initialStore, action) {
   switch (action.type) {
-    case LOAD_PROFILES: {
-      return {
-        profiles: {
-          1: {title: 'Урок №1', description: 'Введение в JavaScript'},
-          2: {title: 'Урок №2', description: 'Погружение в React'},
-          3: {title: 'Урок №3', description: 'Изучаем Redux'},
-        },
-      };
-    }
     case ADD_PROFILE: {
-      const profileId = Object.keys(store.profiles).length + 1;
+      const profileId = parseInt(Object.keys(store.profiles).pop()) + 1;
       return update(store, {
         profiles: {
           $merge: {
@@ -30,6 +25,48 @@ export default function profileReducer(store = initialStore, action) {
               description: action.description,
             },
           },
+        },
+      });
+    }
+    case DELETE_CHAT: {
+      if (Object.keys(store.profiles).length - 1 ===
+        getNullCountObject(store.profiles)) {
+        return store;
+      }
+      return update(store, {
+        profiles: {
+          $merge: {
+            [action.chatId]: null,
+          },
+        },
+      });
+    }
+    case START_PROFILES_LOADING: {
+      return update(store, {
+        isLoadingProfiles: {
+          $set: true,
+        },
+      });
+    }
+    case SUCCESS_PROFILES_LOADING: {
+      const profiles = {};
+      action.payload.forEach((msg) => {
+        const {id, title, description} = msg;
+        profiles[id] = {title, description};
+      });
+      return update(store, {
+        profiles: {
+          $set: profiles,
+        },
+        isLoadingProfiles: {
+          $set: false,
+        },
+      });
+    }
+    case ERROR_PROFILES_LOADING: {
+      return update(store, {
+        isLoadingProfiles: {
+          $set: false,
         },
       });
     }

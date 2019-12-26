@@ -40,19 +40,21 @@ export class ChatForm extends Component {
     const {name} = this.state;
     return (
       <div className='new-chat'>
-        <Input placeholder='Имя чата'
-               inputProps={{'aria-label': 'description'}}
-               name='name'
-               value={name}
-               inputRef={this.contentRef}
-               onChange={(event) => this.handleInputChange(event)}
-               onKeyDown={(event) => this.handleKeyDown(event)}
-        />
-        <div className='separator'/>
-        <Button variant='contained' color='primary'
-                onClick={this.handleNewChat}>
-          Создать
-        </Button>
+        <div className='chat-form'>
+          <Input placeholder='Имя чата'
+                 inputProps={{'aria-label': 'description'}}
+                 name='name'
+                 value={name}
+                 inputRef={this.contentRef}
+                 onChange={(event) => this.handleInputChange(event)}
+                 onKeyDown={(event) => this.handleKeyDown(event)}
+          />
+          <div className='separator'/>
+          <Button variant='contained' color='primary'
+                  onClick={this.handleNewChat}>
+            Создать
+          </Button>
+        </div>
       </div>
     );
   }

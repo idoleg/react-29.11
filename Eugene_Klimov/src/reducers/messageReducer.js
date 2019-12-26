@@ -1,6 +1,10 @@
 import update from 'react-addons-update';
-import {LOAD_MESSAGES, SEND_MESSAGE} from '../actions/messageActions';
-import {formatDate} from '../utils/utils';
+import {SEND_MESSAGE, DELETE_MESSAGE} from '../actions/messageActions';
+import {
+  START_CHATS_LOADING,
+  SUCCESS_CHATS_LOADING,
+  ERROR_CHATS_LOADING,
+} from '../actions/chatActions';
 
 const initialStore = {
   messages: {},
@@ -8,37 +12,6 @@ const initialStore = {
 
 export default function messageReducer(store = initialStore, action) {
   switch (action.type) {
-    case LOAD_MESSAGES: {
-      return {
-        messages: {
-          1: {
-            author: 'Клим',
-            content: 'Привет!',
-            date: formatDate(),
-          },
-          2: {
-            author: 'Клим',
-            content: 'Вы в чатике \"Урок №1\"',
-            date: formatDate(),
-          },
-          3: {
-            author: 'Клим',
-            content: 'Привет!',
-            date: formatDate(),
-          },
-          4: {
-            author: 'Клим',
-            content: 'Вы в чатике \"Урок №2\"',
-            date: formatDate(),
-          },
-          5: {
-            author: 'Клим',
-            content: 'Приветик! Вы в чатике \"Урок №3\"',
-            date: formatDate(),
-          },
-        },
-      };
-    }
     case SEND_MESSAGE: {
       const message = action.message;
       return update(store, {
@@ -53,8 +26,37 @@ export default function messageReducer(store = initialStore, action) {
         },
       });
     }
+    case DELETE_MESSAGE: {
+      return update(store, {
+        messages: {
+          $merge: {
+            [action.messageId]: null,
+          },
+        },
+      });
+    }
+    case START_CHATS_LOADING: {
+      return update(store, {
+        isLoadingChats: {
+          $set: true,
+        },
+      });
+    }
+    case SUCCESS_CHATS_LOADING: {
+      return update(store, {
+        messages: {
+          $set: action.payload.entities.messages,
+        },
+      });
+    }
+    case ERROR_CHATS_LOADING: {
+      return update(store, {
+        isLoadingChats: {
+          $set: false,
+        },
+      });
+    }
     default:
       return store;
   }
 }
-

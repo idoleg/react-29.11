@@ -17,7 +17,7 @@ class Profile extends Component {
   render() {
     const {id} = this.props.match.params;
     const {profiles} = this.props;
-    if (id === undefined || id > +Object.keys(profiles).length) {
+    if (id === undefined || id > parseInt(Object.keys(profiles).pop())) {
       return (
         <div>
           <h2>Профиль чата #{id}</h2>

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Урок №1",
+    "description": "Введение в JavaScript"
+  },
+  {
+    "id": 2,
+    "title": "Урок №2",
+    "description": "Погружение в React"
+  },
+  {
+    "id": 3,
+    "title": "Урок №3",
+    "description": "Изучаем Redux"
+  },
+  {
+    "id": 4,
+    "title": "API-4",
+    "description": "Test API 4"
+  },
+  {
+    "id": 5,
+    "title": "API-5",
+    "description": "Test API 5"
+  }
+]

@@ -1,22 +1,19 @@
 import update from 'react-addons-update';
-import {LOAD_CHATS, ADD_CHAT} from '../actions/chatActions';
-import {SEND_MESSAGE} from '../actions/messageActions';
+import {getNullCountObject} from '../utils/utils';
+import {
+  ADD_CHAT,
+  DELETE_CHAT,
+  SUCCESS_CHATS_LOADING,
+} from '../actions/chatActions';
+import {SEND_MESSAGE, DELETE_MESSAGE} from '../actions/messageActions';
 
 const initialStore = {
   chats: {},
+  isLoadingChats: true,
 };
 
 export default function chatReducer(store = initialStore, action) {
   switch (action.type) {
-    case LOAD_CHATS: {
-      return {
-        chats: {
-          1: {title: 'Урок №1', messageList: [1, 2]},
-          2: {title: 'Урок №2', messageList: [3, 4]},
-          3: {title: 'Урок №3', messageList: [5]},
-        },
-      };
-    }
     case SEND_MESSAGE: {
       const id = action.chatId;
       const chat = store.chats[id];
@@ -34,12 +31,15 @@ export default function chatReducer(store = initialStore, action) {
     }
     case ADD_CHAT: {
       for (const chat of Object.entries(store.chats)) {
+        if (chat[1] === null) {
+          continue;
+        }
         if (chat[1].title === action.title || action.title === '') {
           alert('Недопустимое имя чата!');
           return store;
         }
       }
-      const chatId = Object.keys(store.chats).length + 1;
+      const chatId = parseInt(Object.keys(store.chats).pop()) + 1;
       return update(store, {
         chats: {
           $merge: {
@@ -47,6 +47,46 @@ export default function chatReducer(store = initialStore, action) {
               title: action.title, messageList: [],
             },
           },
+        },
+      });
+    }
+    case DELETE_MESSAGE: {
+      const {chatId, messageId} = action;
+      const newList = store.chats[chatId].messageList.filter(
+        (id) => id !== messageId,
+      );
+      return update(store, {
+        chats: {
+          $merge: {
+            [chatId]: {
+              title: store.chats[chatId].title,
+              messageList: newList,
+            },
+          },
+        },
+      });
+    }
+    case DELETE_CHAT: {
+      if (Object.keys(store.chats).length - 1 ===
+        getNullCountObject(store.chats)) {
+        alert('Нельзя удалить последний чат!');
+        return store;
+      }
+      return update(store, {
+        chats: {
+          $merge: {
+            [action.chatId]: null,
+          },
+        },
+      });
+    }
+    case SUCCESS_CHATS_LOADING: {
+      return update(store, {
+        chats: {
+          $set: action.payload.entities.chats,
+        },
+        isLoadingChats: {
+          $set: false,
         },
       });
     }
