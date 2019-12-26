@@ -23,14 +23,16 @@ export default handleActions({
                 name: "3",
                 messages: []
             }
-            }
+            },
+            notifyChat: 0,
         }
     },
     [addMessage]: (state, {payload: {chatId, message}}) => {
         return update(state, {
             chats: {
                     [chatId]: {messages: {$push: [message]}}
-            }
+            },
+            notifyChat: {$set: [chatId]}
         });
     },
     [addChat]: (state, {payload}) => {
