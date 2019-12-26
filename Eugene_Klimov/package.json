@@ -51,6 +51,8 @@
     "react-redux": "latest",
     "connected-react-router": "latest",
     "history": "latest",
-    "redux-persist": "latest"
+    "redux-persist": "latest",
+    "redux-api-middleware": "latest",
+    "normalizr": "latest"
   }
 }

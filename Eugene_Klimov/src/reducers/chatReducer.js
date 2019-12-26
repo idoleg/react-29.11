@@ -1,14 +1,15 @@
 import update from 'react-addons-update';
 import {getNullCountObject} from '../utils/utils';
-import {ADD_CHAT, DELETE_CHAT} from '../actions/chatActions';
+import {
+  ADD_CHAT,
+  DELETE_CHAT,
+  SUCCESS_CHATS_LOADING,
+} from '../actions/chatActions';
 import {SEND_MESSAGE, DELETE_MESSAGE} from '../actions/messageActions';
 
 const initialStore = {
-  chats: {
-    1: {title: 'Урок №1', messageList: [1, 2]},
-    2: {title: 'Урок №2', messageList: [3, 4]},
-    3: {title: 'Урок №3', messageList: [5]},
-  },
+  chats: {},
+  isLoadingChats: true,
 };
 
 export default function chatReducer(store = initialStore, action) {
@@ -76,6 +77,16 @@ export default function chatReducer(store = initialStore, action) {
           $merge: {
             [action.chatId]: null,
           },
+        },
+      });
+    }
+    case SUCCESS_CHATS_LOADING: {
+      return update(store, {
+        chats: {
+          $set: action.payload.entities.chats,
+        },
+        isLoadingChats: {
+          $set: false,
         },
       });
     }

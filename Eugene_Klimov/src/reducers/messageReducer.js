@@ -1,37 +1,13 @@
 import update from 'react-addons-update';
-import {SEND_MESSAGE} from '../actions/messageActions';
-import {DELETE_MESSAGE} from '../actions/messageActions';
-import {formatDate} from '../utils/utils';
-import {botName} from '../utils/constants';
+import {SEND_MESSAGE, DELETE_MESSAGE} from '../actions/messageActions';
+import {
+  START_CHATS_LOADING,
+  SUCCESS_CHATS_LOADING,
+  ERROR_CHATS_LOADING,
+} from '../actions/chatActions';
 
 const initialStore = {
-  messages: {
-    1: {
-      author: botName,
-      content: 'Привет!',
-      date: formatDate(),
-    },
-    2: {
-      author: botName,
-      content: 'Вы в чатике \"Урок №1\"',
-      date: formatDate(),
-    },
-    3: {
-      author: botName,
-      content: 'Привет!',
-      date: formatDate(),
-    },
-    4: {
-      author: botName,
-      content: 'Вы в чатике \"Урок №2\"',
-      date: formatDate(),
-    },
-    5: {
-      author: botName,
-      content: 'Приветик! Вы в чатике \"Урок №3\"',
-      date: formatDate(),
-    },
-  },
+  messages: {},
 };
 
 export default function messageReducer(store = initialStore, action) {
@@ -56,6 +32,27 @@ export default function messageReducer(store = initialStore, action) {
           $merge: {
             [action.messageId]: null,
           },
+        },
+      });
+    }
+    case START_CHATS_LOADING: {
+      return update(store, {
+        isLoadingChats: {
+          $set: true,
+        },
+      });
+    }
+    case SUCCESS_CHATS_LOADING: {
+      return update(store, {
+        messages: {
+          $set: action.payload.entities.messages,
+        },
+      });
+    }
+    case ERROR_CHATS_LOADING: {
+      return update(store, {
+        isLoadingChats: {
+          $set: false,
         },
       });
     }

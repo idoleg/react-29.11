@@ -7,8 +7,9 @@ import {ChatList} from '../../components/ChatList/ChatList';
 import PropTypes from 'prop-types';
 import './Layout.sass';
 import {sendMessage} from '../../actions/messageActions';
-import {addChat} from '../../actions/chatActions';
-import {addProfile} from '../../actions/profileActions';
+import {addChat, loadChats} from '../../actions/chatActions';
+import {addProfile, loadProfiles} from '../../actions/profileActions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class Layout extends Component {
   static propTypes = {
@@ -17,9 +18,18 @@ class Layout extends Component {
     messages: PropTypes.object.isRequired,
     profiles: PropTypes.object.isRequired,
     sendMessage: PropTypes.func.isRequired,
+    loadProfiles: PropTypes.func.isRequired,
+    loadChats: PropTypes.func.isRequired,
+    isLoadingProfiles: PropTypes.bool.isRequired,
+    isLoadingChats: PropTypes.bool.isRequired,
     addChat: PropTypes.func.isRequired,
     addProfile: PropTypes.func.isRequired,
   };
+
+  componentDidMount() {
+    this.props.loadChats();
+    this.props.loadProfiles();
+  }
 
   sendMessage = (chatId, message) => {
     const {messages} = this.props;
@@ -35,6 +45,25 @@ class Layout extends Component {
   render() {
     const {chats, messages, profiles, addChat, addProfile} = this.props;
 
+    if (this.props.isLoadingChats || this.props.isLoadingProfiles) {
+      return <CircularProgress/>;
+    }
+
+    if (Object.keys(chats).length === 0) {
+      return (
+        <div>
+          Нет ни одного чата!
+        </div>
+      );
+    }
+    if (Object.keys(profiles).length === 0) {
+      return (
+        <div>
+          Нет ни одного профиля!
+        </div>
+      );
+    }
+
     // eslint-disable-next-line react/prop-types
     let {id} = this.props.match.params;
     if (chats[id] === null || chats[id] === undefined) {
@@ -45,6 +74,7 @@ class Layout extends Component {
         }
       }
     }
+
     return (
       <div className='layout'>
         <Header chatId={id} profiles={profiles}/>
@@ -66,11 +96,13 @@ const mapStateToProps = ({chatReducer, messageReducer, profileReducer}) => ({
   chats: chatReducer.chats,
   messages: messageReducer.messages,
   profiles: profileReducer.profiles,
+  isLoadingProfiles: profileReducer.isLoadingProfiles,
+  isLoadingChats: chatReducer.isLoadingChats,
 });
 
 const mapDispatchProps = (dispatch) =>
   bindActionCreators({
-    sendMessage, addChat, addProfile,
+    sendMessage, addChat, addProfile, loadProfiles, loadChats,
   }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(Layout);
