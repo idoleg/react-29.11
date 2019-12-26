@@ -4,8 +4,9 @@ import connect from 'react-redux/es/connect/connect';
 import {animateScroll} from 'react-scroll';
 import {List, ListItem} from 'material-ui/List';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { push } from 'connected-react-router';
 import { TextField } from 'material-ui';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import { addChat } from '../../actions/chatActions';
@@ -16,6 +17,7 @@ class ChatList extends React.Component {
   static propTypes = {
     chats: PropTypes.object.isRequired,
     addChat: PropTypes.func.isRequired,
+    push: PropTypes.func.isRequired,
   };
 
 
@@ -40,6 +42,10 @@ class ChatList extends React.Component {
     }
   }
 
+  handleNavigate = (link) => {
+    this.props.push(link);
+  }
+
   // подсмотрел у Евгения Климова
   componentDidMount() {
     this.scrollToBottom();
@@ -60,9 +66,12 @@ class ChatList extends React.Component {
 
     const { chats } = this.props;
     const chatElements = Object.keys(chats).map(chatId => (
-      <Link key= { chatId } to={ `/chat/${ chatId }` }>
-          <ListItem primaryText={ chats[chatId].title } leftIcon={ <ContentSend />} />
-        </Link>));
+      <ListItem
+        key = { chatId }
+        primaryText={ chats[chatId].title }
+        leftIcon={ <ContentSend />}
+        onClick={ () => this.handleNavigate(`/chat/${chatId}`)}
+         />));
 
     return (
       <div id='chat-list' className='chat-list'>
@@ -90,10 +99,11 @@ class ChatList extends React.Component {
   }
 }
 
+
 const mapStateToProps = ({ chatReducer }) => ({
   chats: chatReducer.chats,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat, push }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
