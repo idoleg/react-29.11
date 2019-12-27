@@ -20,15 +20,18 @@ export function botMiddleware(store) {
 }
  */
 
-let timer;
+let timer = null;
+let timers = [];
 
 export const botMiddleware = (store) => (next) => (action) => {
     switch (action.type) {
         case addMessage.toString(): {
             if (action.payload.message.name != 'Bot') {
                 const {chatId, message: {name}} = action.payload;
-                clearTimeout(timer);
-                timer = setTimeout(() => store.dispatch(addMessage(chatId, {name: 'Bot', content: `Test passed from MW ${name} in chat ${chatId}`})), 5000);
+                timer = setTimeout(() => {
+                    store.dispatch(addMessage(chatId, {name: 'Bot', content: `Test passed from MW ${name} in chat ${chatId}`}));
+                }, 5000);
+                timers.push(timer);
             }
         }
             const {chatId} = action.payload;

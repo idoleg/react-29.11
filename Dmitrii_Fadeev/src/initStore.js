@@ -10,8 +10,8 @@ import { routerMiddleware } from 'connected-react-router';
 
 const persistConfig = {
     key: 'geekmeseenger',
-    storage,
-    storageReconciler: autoMergeLevel2,
+    storage: storage,
+    stateReconciler: autoMergeLevel2,
     whitelist: ['messageReducer'],
 };
 
