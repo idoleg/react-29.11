@@ -1,0 +1,45 @@
+[
+    {
+        "id": "1",
+        "title": "chat-1",
+        "messageIDs": [
+            {
+                "id": "0",
+                "name": "Vasia Pupkine",
+                "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit."
+            },
+            {
+                "id": "1",
+                "name": "Doloremque",
+                "content": "In hac habitasse platea dictumst. Sed quis eros suscipit, tristique augue quis"
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "title": "chat-2",
+        "messageIDs": [
+            {
+                "id": "2",
+                "name": "Voluptatum",
+                "content": "Rerum totam dicta error, doloremque officiis rem molestias asperiores cupiditate,"
+            },
+            {
+                "id": "3",
+                "name": "Aspernatur",
+                "content": "Veritatis aliquam eaque provident voluptatum fuga?"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "title": "chat-3",
+        "messageIDs": [
+            {
+                "id": "4",
+                "name": "Velit",
+                "content": "Velit quia id omnis incidunt fugit dolores hic, aperiam perspiciatis quidem natus. Velit quia id omnis incidunt fugit dolores hic, aperiam perspiciatis quidem natus."
+            }
+        ]
+    }
+]

@@ -3,8 +3,6 @@ import {
     DELETE_MESSAGES,
     isNew
 } from "../actions/messageActions";
-import { showNotice, hideNotice } from "../actions/chatActions";
-import { LOCATION_CHANGE } from "connected-react-router";
 
 const messageMiddleware = state => next => action => {
     switch (action.type) {

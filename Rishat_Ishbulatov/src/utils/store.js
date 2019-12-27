@@ -6,7 +6,6 @@ import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 import { routerMiddleware } from "connected-react-router";
 import { createBrowserHistory } from "history";
 import { persistReducer, persistStore } from "redux-persist";
-// import reduxLogger from "redux-logger";
 
 const persistConfig = {
     key: "messenger",

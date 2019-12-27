@@ -11,8 +11,7 @@ const robotMiddleware = store => next => action => {
                 store.dispatch(
                     sendMessage(action.chatID, {
                         name: "Robot",
-                        content: `Hello, human. I'm a robot from chat with ID ${action.chatID}.`,
-                        isNew: true
+                        content: `Hello, human. I'm a robot from chat with ID ${action.chatID}.`
                     })
                 ),
             500
@@ -31,8 +30,7 @@ const robotMiddleware = store => next => action => {
                 store.dispatch(
                     sendMessage(action.chatID, {
                         name: "Robot",
-                        content: `Hello, human ${name}. I'm a robot from chat with ID ${chatID}.`,
-                        isNew: true
+                        content: `Hello, human ${name}. I'm a robot from chat with ID ${chatID}.`
                     })
                 ),
             1000

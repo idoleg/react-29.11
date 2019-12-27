@@ -4,9 +4,9 @@ import classNames from "classnames";
 import("./Message.sass");
 
 export const messageType = {
-    name: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    isNew: PropTypes.bool.isRequired
+    name: PropTypes.string,
+    content: PropTypes.string,
+    isNew: PropTypes.bool
 };
 
 export class Message extends Component {
