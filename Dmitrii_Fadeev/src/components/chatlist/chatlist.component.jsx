@@ -2,11 +2,13 @@ import React from 'react';
 import './chatlist.style.css'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {Button} from '@material-ui/core/Button';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { push } from 'connected-react-router';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
-export class ChatList extends React.Component {
+class ChatList extends React.Component {
 
     static propTypes = {
         push: PropTypes.func.isRequired,
@@ -15,6 +17,7 @@ export class ChatList extends React.Component {
     handlePush = (link) => {
         console.log("props", this.props);
         this.props.push(link);
+        console.log("link", link);
     };
     render() {
         const { chats, notifyChat } = this.props;
@@ -40,3 +43,11 @@ export class ChatList extends React.Component {
         )
     }
 }
+
+const mapStateToProps = () => ({
+
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
