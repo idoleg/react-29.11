@@ -1,4 +1,5 @@
 import {addMessage} from '../actions/messageActions';
+import {addChat, notifyChat} from "../actions/chatActions";
 import update from 'react-addons-update';
 /*
 export function botMiddleware(store) {
@@ -29,8 +30,10 @@ export const botMiddleware = (store) => (next) => (action) => {
                 clearTimeout(timer);
                 timer = setTimeout(() => store.dispatch(addMessage(chatId, {name: 'Bot', content: `Test passed from MW ${name} in chat ${chatId}`})), 5000);
             }
-
         }
+            const {chatId} = action.payload;
+            store.dispatch(notifyChat(chatId));
+            setTimeout(() => store.dispatch(notifyChat(null)), 2000);
     }
     return next(action);
 };
