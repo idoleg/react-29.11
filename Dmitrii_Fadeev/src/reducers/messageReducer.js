@@ -24,7 +24,7 @@ export default handleActions({
                 messages: []
             }
             },
-            notifyChat: 0,
+            notifyChat: null,
         }
     },
     [addMessage]: (state, {payload: {chatId, message}}) => {

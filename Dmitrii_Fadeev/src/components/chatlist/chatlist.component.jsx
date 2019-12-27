@@ -35,7 +35,7 @@ class ChatList extends React.Component {
                         const chatItemClasses = classNames(
                             {"chat-item-highlight": notifyChat == item.num},
                         );
-                        return <ListItem className={chatItemClasses} button onClick={() => this.handlePush(item.link)}>{item.num}</ListItem>
+                        return <ListItem key={item.num} className={chatItemClasses} button onClick={() => this.handlePush(item.link)}>{item.num}</ListItem>
                     }
                 )}
                 <ListItem button onClick={this.props.createNewChat}>+</ListItem>
@@ -45,7 +45,6 @@ class ChatList extends React.Component {
 }
 
 const mapStateToProps = () => ({
-
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch);
