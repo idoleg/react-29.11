@@ -46,7 +46,6 @@ export default handleActions({
         });
     },
     [notifyChat]: (state, {payload: {chatId}}) => {
-        console.log("notify chat");
         return update(state, {
             notifyChat: {$set: [chatId]}
         }
