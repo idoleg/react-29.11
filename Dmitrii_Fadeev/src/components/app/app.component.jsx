@@ -11,6 +11,7 @@ const {store, persistor } = initStore();
 
 export class App extends React.Component {
     render() {
+        console.log(persistor);
         return (
             <Provider store={store}>
                 <PersistGate loading={ null } persistor={ persistor }>

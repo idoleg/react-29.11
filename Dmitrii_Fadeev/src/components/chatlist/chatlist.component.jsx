@@ -15,9 +15,7 @@ class ChatList extends React.Component {
     };
 
     handlePush = (link) => {
-        console.log("props", this.props);
         this.props.push(link);
-        console.log("link", link);
     };
     render() {
         const { chats, notifyChat } = this.props;
