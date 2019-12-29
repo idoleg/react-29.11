@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HomeWork-7</title>
+    <title>HomeWork-8</title>
     <base href="/">
+    <link rel="manifest" href="../manifest/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style type="text/css">
         body {
             margin: 0 auto;
@@ -18,3 +20,19 @@
 <div id="root" class="root"></div>
 <script type="text/javascript" src="bundle.js"></script></body>
 </html>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('../service-worker.js').then(function(registration) {
+        console.log('ServiceWorker registered successfully with action scope: ', registration.scope);
+      }, function(err) {
+        console.log('ServiceWorker failed to register: ', err);
+      }).catch(function(err) {
+        console.log(err);
+      });
+    });
+  } else {
+    console.log('ServiceWorker not supported');
+  }
+</script>
