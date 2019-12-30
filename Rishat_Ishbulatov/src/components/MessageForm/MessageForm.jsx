@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Fab, TextField } from "@material-ui/core";
-import { Send, DeleteForever } from "@material-ui/icons";
+import { Send } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import("./MessageForm.sass");
 
@@ -11,18 +11,14 @@ export class MessageForm extends Component {
     };
     static propTypes = {
         chatID: PropTypes.string,
-        onSubmit: PropTypes.func.isRequired,
-        onDelete: PropTypes.func.isRequired
+        onSubmit: PropTypes.func.isRequired
     };
     handleSend = () => {
         this.props.onSubmit({
             name: this.state.author ? this.state.author : "Anonymous",
             content: this.state.content
         });
-        this.setState({
-            author: "",
-            content: ""
-        });
+        this.setState({ content: "" });
     };
     handleChange = event => {
         this.setState({
@@ -53,15 +49,13 @@ export class MessageForm extends Component {
                     onKeyDown={this.handleKeyDown}
                     autoFocus
                 />
-                <Fab onClick={this.handleSend} size="small" color="primary">
-                    <Send fontSize="small" />
-                </Fab>
                 <Fab
-                    onClick={this.props.onDelete}
+                    onClick={this.handleSend}
                     size="small"
-                    color="secondary"
+                    color="primary"
+                    label="Send Message"
                 >
-                    <DeleteForever fontSize="small" />
+                    <Send fontSize="small" />
                 </Fab>
             </div>
         );

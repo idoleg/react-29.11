@@ -1,6 +1,6 @@
 import {
     ADD_CHAT,
-    DELETE_CHATS,
+    DELETE_CHAT,
     SHOW_NOTICE,
     HIDE_NOTICE
 } from "../actions/chatActions";
@@ -9,7 +9,7 @@ import {
     SUCCESS_LOADING_STATE,
     ERROR_LOADING_STATE
 } from "../actions/apiActions";
-import { SEND_MESSAGE, DELETE_MESSAGES } from "../actions/messageActions";
+import { SEND_MESSAGE, DELETE_MESSAGE } from "../actions/messageActions";
 import { RESET_STATE } from "../actions/apiActions";
 
 const defaultState = {
@@ -47,9 +47,13 @@ export default function chatReducer(state = defaultState, action) {
                 [action.chatID]: { title: action.title, messageIDs: [] }
             }
         };
-    case DELETE_CHATS:
+    case DELETE_CHAT:
+        const { chats } = state;
+        delete chats[action.chatID];
         return {
-            chats: {}
+            chats: {
+                ...chats
+            }
         };
     case SEND_MESSAGE:
         if (!(action.chatID in state.chats)) {
@@ -75,13 +79,15 @@ export default function chatReducer(state = defaultState, action) {
                 }
             }
         };
-    case DELETE_MESSAGES:
+    case DELETE_MESSAGE:
+        const { messageIDs } = state.chats[action.chatID];
+        messageIDs.splice(messageIDs.indexOf(action.messageID), 1);
         return {
             chats: {
                 ...state.chats,
                 [action.chatID]: {
                     title: state.chats[action.chatID].title,
-                    messageIDs: []
+                    messageIDs: messageIDs
                 }
             }
         };

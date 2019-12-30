@@ -1,6 +1,6 @@
 import {
     SEND_MESSAGE,
-    DELETE_MESSAGES,
+    DELETE_MESSAGE,
     IS_NEW
 } from "../actions/messageActions";
 import {
@@ -8,7 +8,6 @@ import {
     SUCCESS_LOADING_STATE,
     ERROR_LOADING_STATE
 } from "../actions/apiActions";
-import { DELETE_CHATS } from "../actions/chatActions";
 import { RESET_STATE } from "../actions/apiActions";
 
 const defaultState = {
@@ -53,25 +52,19 @@ export default function messageReducer(state = defaultState, action) {
                 ...state.messages,
                 [action.messageID]: {
                     name: state.messages[action.messageID].name,
-                    content: state.messages[action.messageID].content
+                    content: state.messages[action.messageID].content,
+                    date: state.messages[action.messageID].date
                 }
             }
         };
     }
-    case DELETE_MESSAGES: {
-        let messages = state.messages;
-        action.messageIDs.forEach(element => {
-            delete messages[element];
-        });
+    case DELETE_MESSAGE: {
+        const { messages } = state;
+        delete messages[action.messageID];
         return {
             messages: {
                 ...messages
             }
-        };
-    }
-    case DELETE_CHATS: {
-        return {
-            messages: {}
         };
     }
     case RESET_STATE: {

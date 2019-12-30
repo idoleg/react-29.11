@@ -2,47 +2,43 @@ import React, { Component } from "react";
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Toolbar, Typography } from "@material-ui/core";
+import { Toolbar, Typography, CircularProgress } from "@material-ui/core";
 import PropTypes from "prop-types";
+import PushToggle from "../../components/PushToggle/PushToggle";
 import("./Header.sass");
 
 export class Header extends Component {
     static propTypes = {
         chatID: PropTypes.string,
         chats: PropTypes.object,
+        isChatsLoading: PropTypes.bool,
         push: PropTypes.func.isRequired
     };
     handleNavigate = link => {
         this.props.push(link);
     };
     render() {
-        const { chatID, chats } = this.props;
-        const title =
-            chatID && chats[chatID]
-                ? capitalizeFirstLetter(chats[chatID].title)
-                : "Chat";
+        const { chatID, chats, isChatsLoading } = this.props;
+        const title = chatID && chats[chatID] ? chats[chatID].title : "chat";
         return (
             <Toolbar className="header">
+                <PushToggle />
                 <Typography
                     onClick={() => this.handleNavigate("/profile")}
                     variant="h6"
                 >
-                    {title}
+                    {`${title} `}
+                    {isChatsLoading && <CircularProgress size={14} />}
                 </Typography>
             </Toolbar>
         );
     }
 }
 
-const mapStateToProps = ({ chatReducer }) => {
-    return {
-        chats: chatReducer.chats
-    };
-};
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+    isChatsLoading: chatReducer.isChatsLoading
+});
 const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}

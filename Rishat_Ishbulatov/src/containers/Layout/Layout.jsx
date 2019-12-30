@@ -16,7 +16,7 @@ export class Layout extends Component {
         return (
             <div className="layout">
                 <Header chatID={chatID} />
-                <ChatList />
+                <ChatList chatID={chatID} />
                 {chatID && <MessageList chatID={chatID} />}
             </div>
         );

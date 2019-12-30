@@ -1,6 +1,5 @@
 export const ADD_CHAT = "@@chat/ADD_CHAT";
 export const DELETE_CHAT = "@@chat/DELETE_CHAT";
-export const DELETE_CHATS = "@@chat/DELETE_CHATS";
 export const SHOW_NOTICE = "@@chat/SHOW_NOTICE";
 export const HIDE_NOTICE = "@@chat/HIDE_NOTICE";
 
@@ -12,9 +11,6 @@ export const addChat = (title, chatID = null) => ({
 export const deleteChat = chatID => ({
     type: DELETE_CHAT,
     chatID
-});
-export const deleteChats = () => ({
-    type: DELETE_CHATS
 });
 export const showNotice = chatID => ({
     type: SHOW_NOTICE,

@@ -6,6 +6,7 @@ export const SUCCESS_LOADING_PROFILE = "@@api/SUCCESS_LOADING_PROFILE";
 export const ERROR_LOADING_PROFILE = "@@api/ERROR_LOADING_PROFILE";
 export const RESET_STATE = "@@api/RESET_STATE";
 import { normalize } from "normalizr";
+import { wait } from "../utils/helpers";
 import { chats } from "../utils/schemas";
 import { RSAA, getJSON } from "redux-api-middleware";
 
@@ -45,7 +46,3 @@ export const loadProfile = () => ({
 export const resetState = () => ({
     type: RESET_STATE
 });
-
-function wait(ms, value) {
-    return new Promise(resolve => setTimeout(resolve, ms, value));
-}

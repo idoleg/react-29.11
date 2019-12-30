@@ -1,4 +1,4 @@
-import { ADD_CHAT, DELETE_CHATS } from "../actions/chatActions";
+import { ADD_CHAT } from "../actions/chatActions";
 import { SEND_MESSAGE } from "../actions/messageActions";
 import { showNotice, hideNotice } from "../actions/chatActions";
 import { LOCATION_CHANGE } from "connected-react-router";
@@ -32,9 +32,6 @@ const chatMiddleware = state => next => action => {
             state.dispatch(hideNotice(storedChatID[addr]));
             delete storedChatID[addr];
         }
-        break;
-    case DELETE_CHATS:
-        storedChatID = {};
         break;
     }
     return next(action);

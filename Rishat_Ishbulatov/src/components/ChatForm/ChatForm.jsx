@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Fab, TextField } from "@material-ui/core";
-import { ChatBubble, DeleteForever } from "@material-ui/icons";
+import { ChatBubble } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import("./ChatForm.sass");
 
-export function ChatForm({ onSubmit, onDelete }) {
+export function ChatForm({ onSubmit }) {
     const [chatName, setChatName] = useState("");
     return (
         <div className="chat-form">
@@ -14,6 +14,7 @@ export function ChatForm({ onSubmit, onDelete }) {
                 onChange={e => setChatName(e.target.value)}
             />
             <Fab
+                label="Submit Chat"
                 onClick={() => {
                     onSubmit(chatName);
                     setChatName("");
@@ -23,14 +24,10 @@ export function ChatForm({ onSubmit, onDelete }) {
             >
                 <ChatBubble fontSize="small" />
             </Fab>
-            <Fab onClick={() => onDelete()} size="small" color="secondary">
-                <DeleteForever fontSize="small" />
-            </Fab>
         </div>
     );
 }
 
 ChatForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired
 };

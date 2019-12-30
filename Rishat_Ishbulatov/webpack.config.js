@@ -3,20 +3,30 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, "src", "index.jsx"),
+    entry: {
+        app: path.resolve(__dirname, "src", "index.jsx")
+    },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "app.js"
     },
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
+                include: path.resolve(__dirname, "src"),
                 loader: "babel-loader",
                 options: {
                     presets: ["@babel/env", "@babel/react"],
-                    plugins: ["@babel/plugin-proposal-class-properties"]
+                    plugins: [
+                        [
+                            "@babel/plugin-proposal-class-properties",
+                            {
+                                loose: true
+                            }
+                        ]
+                    ]
                 }
             },
             {
@@ -39,11 +49,11 @@ module.exports = {
             filename: "index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: "main.css"
+            filename: "app.css"
         })
     ],
     devServer: {
         historyApiFallback: true
-    },
-    devtool: "inline-source-map"
+    }
+    //devtool: "inline-source-map"
 };

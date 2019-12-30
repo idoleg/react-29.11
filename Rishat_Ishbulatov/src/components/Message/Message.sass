@@ -1,13 +1,16 @@
 @import anim
 
 .message
-    background-color: lightblue
-    border-radius: 10px
-    padding: 10px
-    margin: 10px 0
+    background-color: lightblue !important
+    color: black !important
+    margin-bottom: 10px !important
     width: 70%
     &-new
 	    animation: slide-in-blurred-top 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both
-
     &-person
         align-self: flex-end
+    &-delete
+        color: darkgray 
+        cursor: pointer
+        &:hover
+            color: lightgray

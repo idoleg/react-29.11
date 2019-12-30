@@ -5,9 +5,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>React with webpack and babel</title>
+        <link rel="manifest" href="/manifest/manifest.json" />
         <base href="/" />
     </head>
     <body>
+        <script>
+            window.addEventListener("appinstalled", e => {
+                fetch("", {
+                    method: "GET",
+                    credentials: "include"
+                });
+            });
+            if ("serviceWorker" in navigator) {
+                window.addEventListener("load", function() {
+                    navigator.serviceWorker
+                        .register("/service-worker.js")
+                        .then(
+                            function(registration) {
+                                console.log(
+                                    "ServiceWorker registered successfully with action scope: ",
+                                    registration.scope
+                                );
+                            },
+                            function(err) {
+                                console.log(
+                                    "ServiceWorker failed to register: ",
+                                    err
+                                );
+                            }
+                        )
+                        .catch(function(err) {
+                            console.log(err);
+                        });
+                });
+            } else {
+                console.log("ServiceWorker not supported");
+            }
+        </script>
         <div id="root"></div>
+        <script src="./notifications.js"></script>
     </body>
 </html>

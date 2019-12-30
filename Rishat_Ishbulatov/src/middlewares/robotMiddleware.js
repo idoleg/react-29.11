@@ -11,7 +11,7 @@ const robotMiddleware = store => next => action => {
                 store.dispatch(
                     sendMessage(action.chatID, {
                         name: "Robot",
-                        content: `Hello, human. I'm a robot from chat with ID ${action.chatID}.`
+                        content: `Hello, human. I'm a robot from ${action.title}`
                     })
                 ),
             500
@@ -23,14 +23,14 @@ const robotMiddleware = store => next => action => {
             return next(action);
         }
         clearTimeout(botTimer);
-        let name = action.message.name;
-        let chatID = action.chatID;
+        const { chatID, chatTitle } = action;
+        const { name } = action.message;
         botTimer = setTimeout(
             () =>
                 store.dispatch(
-                    sendMessage(action.chatID, {
+                    sendMessage(chatID, {
                         name: "Robot",
-                        content: `Hello, human ${name}. I'm a robot from chat with ID ${chatID}.`
+                        content: `Hello, human ${name}. I'm a robot from ${chatTitle}`
                     })
                 ),
             1000
