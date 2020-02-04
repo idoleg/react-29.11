@@ -16,7 +16,7 @@ export class Message extends Component {
             "message-person": name !== "Bot"
         });
         return (
-        <div className={msgClass}><b>{name || "Anonim"}:</b> {content}</div>
+        <div className={msgClass}><strong>{name || "Anonim"}:</strong> {content}</div>
         );
     }
 }

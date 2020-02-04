@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Message> renders our content 1`] = `
+<div
+  className="message message-person"
+>
+  <strong>
+    My user
+    :
+  </strong>
+   
+  My content
+</div>
+`;
