@@ -16,7 +16,8 @@ class LayoutContainer extends React.Component {
     };
 
     render() {
-        return <Layout chats={this.props.chats} chatId={this.props.chatId} onSendMessage={this.handleSendMessage} onAddChat={this.props.addChat}/>
+
+        return <Layout chats={this.props.chats} chatId={this.props.chatId} notifyChat={this.props.notifyChat} onSendMessage={this.handleSendMessage} onAddChat={this.props.addChat} />
     }
 };
 
@@ -24,7 +25,8 @@ const mapStateToProps = (state, ownProps) => {
     const {chatId} = ownProps.match.params;
     return {
         chats: state.messages.chats,
-        chatId: chatId
+        chatId: chatId,
+        notifyChat: state.messages.notifyChat
     }
 };
 

@@ -1,7 +1,7 @@
 import {handleActions} from 'redux-actions';
 import {loadMessages, addMessage} from '../actions/messageActions';
 import update from 'react-addons-update';
-import {addChat} from "../actions/chatActions";
+import {addChat, notifyChat} from "../actions/chatActions";
 
 const defaultState = {
     chats: {}
@@ -23,7 +23,8 @@ export default handleActions({
                 name: "3",
                 messages: []
             }
-            }
+            },
+            notifyChat: null,
         }
     },
     [addMessage]: (state, {payload: {chatId, message}}) => {
@@ -43,5 +44,11 @@ export default handleActions({
                 }
             }
         });
+    },
+    [notifyChat]: (state, {payload: {chatId}}) => {
+        return update(state, {
+            notifyChat: {$set: [chatId]}
+        }
+        )
     }
 }, defaultState);

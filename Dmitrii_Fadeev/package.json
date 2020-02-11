@@ -15,6 +15,9 @@
   "dependencies": {
     "@material-ui/core": "^4.7.2",
     "classnames": "^2.2.6",
+    "connected-react-router": "^6.6.1",
+    "history": "^4.10.1",
+    "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-addons-update": "^15.6.2",
     "react-dom": "^16.12.0",
@@ -22,7 +25,8 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-actions": "^2.6.5",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",

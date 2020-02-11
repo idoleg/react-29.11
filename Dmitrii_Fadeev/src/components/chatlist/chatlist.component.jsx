@@ -2,17 +2,23 @@ import React from 'react';
 import './chatlist.style.css'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import {Link} from 'react-router-dom';
-import {Button} from '@material-ui/core/Button';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { push } from 'connected-react-router';
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
 
-export class ChatList extends React.Component {
-    constructor(props) {
-        super(props);
+class ChatList extends React.Component {
 
-    }
+    static propTypes = {
+        push: PropTypes.func.isRequired,
+    };
 
+    handlePush = (link) => {
+        this.props.push(link);
+    };
     render() {
-        const { chats } = this.props;
+        const { chats, notifyChat } = this.props;
         const list = [];
         for (let chat in chats) {
             list.push({
@@ -21,12 +27,24 @@ export class ChatList extends React.Component {
             });
         }
         return (
+
             <List className="chatlist">
-                {list.map(item =>
-                    <Link to={item.link} key={item.num}><ListItem button>{item.num}</ListItem></Link>
+                {list.map((item) => {
+                        const chatItemClasses = classNames(
+                            {"chat-item-highlight": notifyChat == item.num},
+                        );
+                        return <ListItem key={item.num} className={chatItemClasses} button onClick={() => this.handlePush(item.link)}>{item.num}</ListItem>
+                    }
                 )}
                 <ListItem button onClick={this.props.createNewChat}>+</ListItem>
             </List>
         )
     }
 }
+
+const mapStateToProps = () => ({
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ push }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);

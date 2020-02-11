@@ -8,18 +8,6 @@ export class Chat extends React.Component {
         super(props);
     }
 
-    componentDidUpdate() {
-        const {chat} = this.props;
-        if (chat.messages.length === 0) {
-            return;
-        }
-        let name = chat.messages[chat.messages.length - 1].name;
-        if (name === 'Bot') {
-            return;
-        }
-        setTimeout(() => this.props.sendNewMessage({name: 'Bot', content: `Test passed ${name} in chat ${chat.name}`}), 2000);
-    }
-
     render() {
         const {chat} = this.props;
         return (
