@@ -8,15 +8,15 @@ import {deleteMessage} from '../../actions/messageActions';
 import {connect} from 'react-redux';
 
 const messageType = {
-  author: PropTypes.string.isRequired,
+  author: PropTypes.string,
   content: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  chatId: PropTypes.string.isRequired,
-  deleteMessage: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  chatId: PropTypes.string,
+  deleteMessage: PropTypes.func,
 };
 
-class Message extends Component {
+export class Message extends Component {
   static propTypes = messageType;
 
   handleDeleteMessage = () => {
@@ -41,9 +41,7 @@ class Message extends Component {
   }
 }
 
-const mapStateToProps = ({messageReducer}) => ({
-  messages: messageReducer.messages,
-});
+const mapStateToProps = ({}) => ({});
 
 const mapDispatchProps = (dispatch) =>
   bindActionCreators({deleteMessage}, dispatch);
